@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh_TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewpoint" content="width=device-width,initial-scale=1.0" />
+    <title>登入頁面</title>
+    <link rel="stylesheet" href="login_style.css" />
+    <!-- 思源宋體Semibold -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 思源宋體Bold -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!--上面那條bar-->
+    <header>
+      <h1>ShutterWave</h1>
+      <nav>
+        <ul>
+          <li><a href="membership.html">會員中心</a></li>
+          <li><a href="../home.html">首頁</a></li>
+          <li><a href="#">購物車</a></li>
+          <li><a href="#">我的商店</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!--跳去註冊/登入頁面-->
+      <div class="login">
+        <a class="reg_link" href="register.html">註冊</a>
+        <span class="slash">/</span>
+        <a class="log_link" href="login.html">登入</a>
+      </div>
+      <br />
+
+      <section class="text-input">
+        <!--輸入使用者名稱/密碼-->
+        <div class="form-group">
+          <input class="input" type="text" placeholder="請輸入使用者名稱" />
+        </div>
+
+        <div class="form-group">
+          <input class="input" type="password" placeholder="請輸入密碼" />
+        </div>
+
+        <!--跳去忘記密碼頁面-->
+        <div class="form-action">
+          <a class="forgetpw" href="forgetpw.html">忘記密碼</a>
+        </div>
+
+        <div class="form-group">
+          <div class="log_bt">
+            <!--登入按鈕-->
+            <button>登入</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Copyright © 2024 伶羽游詠 All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

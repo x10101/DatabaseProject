@@ -1,0 +1,224 @@
+/* 重置默认样式 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/*
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  margin: -70px 10px 0px -50px;
+}
+*/
+
+/* 功能列 */
+header {
+  background-color: whitesmoke;
+  height: 80px; /* 頁首的高度 */
+  width: 100%; /* 頁首的寬度100%與視窗同寬 */
+  
+}
+
+h1 {
+  color: black;
+  color: coral;
+  position: absolute;
+  left: 30px;
+  top: 0;
+  line-height: 80px;
+
+  background-image: url(../images/shutterWave_logo.png); /* 加入圖片 */
+  background-repeat: no-repeat; /* 只顯示一張 */
+  background-position: center; /* 移到中間 */
+  width: 400px;
+  background-size: 100%;
+  text-indent: -9999px; /* h1可以方便網頁查詢，但又不想它出現，因此將它推到很遠的地方 */
+}
+
+header ul {
+  position: absolute;
+  right: calc(3vw + 17px);
+  top: 0;
+  line-height: 90px;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700; /* 設置字重為 Bold */
+  font-size: 18px; /* 可以調整字體大小 */
+}
+
+header li {
+  display: inline;
+  margin-left: 8vw; /*加大按鈕的右邊距，4vw表示viewpoint的4% */
+}
+
+header a {
+  color: black;
+  text-decoration: none; /* 文字裝飾設無，就不會有底線 */
+  font-size: 22px;
+}
+
+header a:hover {
+  color: cornflowerblue;
+  /*  text-decoration: underline;          設定底線只在游標碰到時顯示 */
+}
+
+/* 登入註冊-功能列 */
+.login {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.reg_link,
+.log_link {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: darkgrey;
+  text-decoration: none;
+}
+
+.reg_link:hover,
+.log_link:hover {
+  text-decoration: underline;
+}
+
+.slash {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: darkgrey;
+  text-decoration: none;
+  align-items: baseline;
+}
+
+/* 登入輸入框 */
+.text-input {
+  padding: 30px; /* 調整內部間距（讓框框更高或更窄） */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column; /* 子元素垂直排列 */
+  gap: 20px; /* 子元素之間的間距 */
+  width: 500px; /* 調整框框的寬度（更大或更小） */
+  height: 350px; /* 調整框框的寬度（更大或更小） */
+  align-items: center; /* 子元素水平居中 */
+  justify-content: center; /* 子元素垂直居中 */
+  margin: 80px auto; /* 讓框框居中於頁面 */
+
+  background-color: #fff; /* 背景為白色 */
+  border: 1px solid #ddd; /* 邊框顏色為淺灰 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加輕微陰影 */
+  max-width: 90%; /* 確保框框在小屏幕上不會超出視窗寬度 */
+}
+
+/* 表單組，調整輸入框與文字 */
+.form-group {
+  display: flex;
+  flex-direction: column; /* 標籤與輸入框垂直排列 */
+  align-items: center; /* 水平居中 */
+  width: 80%; /* 寬度填滿父容器 */
+}
+
+/* 輸入框樣式 */
+.input {
+  font-size: 20px;
+  width: 100%; /* 輸入框寬度填滿父容器 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box; /* 確保 padding 不影響寬度 */
+}
+
+/* 忘記密碼樣式 */
+.form-action {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  justify-content: flex-end;
+  width: 80%; /* 寬度與父容器一致 */
+  margin-top: 5px; /* 與輸入框的間距 */
+}
+
+.forgetpw {
+  font-size: 14px;
+  color: cornflowerblue;
+  text-decoration: none;
+}
+
+.forgetpw:hover {
+  text-decoration: underline;
+}
+
+/* 登录按钮 */
+.log_bt,
+.resetpw_bt,
+.reg_bt {
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin-top: 20px;
+}
+
+.log_bt button,
+.resetpw_bt button,
+.reg_bt button {
+  padding: 6px 180px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.log_bt button:hover,
+.resetpw_bt button:hover,
+.reg_bt button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 2px 0;
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600; /* 設置字重為 Semi-Bold */
+  font-size: 15px; /* 可以調整字體大小 */
+  background-color: whitesmoke;
+}
+
+/*
+@media (max-width: 600px) {
+  .login {
+    width: 80%; 
+  }
+
+  header ul {
+    right: 5vw; 
+  }
+
+  header li {
+    margin-left: 5vw; 
+  }
+}
+
+@media (max-width: 400px) {
+  .login {
+    width: 90%;
+  }
+
+  h1 {
+    width: 100%; 
+
+  header ul {
+    right: 3vw; 
+  }
+}
+*/

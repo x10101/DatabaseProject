@@ -1,0 +1,71 @@
+<!-- my-shop.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理 - ShutterWave</title>
+    <link rel="stylesheet" href="addNewProduct.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="cart_main.css">
+    <script src="cart.js"></script>
+    <script src="addNewProduct.js"></script>
+</head>
+<body>
+    <header>
+        <h1>ShutterWave</h1>
+        <nav>
+          <ul>
+            <li><a href="#">會員中心</a></li>
+            <li><a href="home.html">首頁</a></li>
+            <li><a href="#" id="cart-btn">購物車</a></li>
+            <li><a href="my_shop.html">我的商店</a></li>
+          </ul>
+        </nav>
+    </header>
+    
+
+    <div class="container">
+        <br>
+        <!-- 新增商品表單 -->
+        <div class="product-form">
+            <h2>新增商品</h2>
+            <br>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label for="productBrand">品牌:</label>
+                    <select id="productBrand" name="productBrand" required>
+                        <option value="Canon">Canon</option>
+                        <option value="Nikon">Nikon</option>
+                        <option value="SONY">SONY</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productName">商品名稱:</label>
+                    <input type="text" id="productName" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">商品價格:</label>
+                    <input type="number" id="productPrice" name="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="productQuantity">商品數量:</label>
+                    <input type="number" id="productQuantity" name="productQuantity" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">商品說明:</label>
+                    <textarea id="productDescription" name="productDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">商品圖片:</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                </div>
+
+                <button type="submit" class="btn-primary">上架</button>
+            </form>
+        </div>
+
+    </div>
+    
+</body>
+</html>

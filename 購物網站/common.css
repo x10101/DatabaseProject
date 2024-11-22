@@ -1,0 +1,87 @@
+* {
+    /* 網站會預設css樣式，如果不想要可以先重置 */
+    padding: 0;
+    margin: 0;
+}
+/* 全局布局设置 */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+
+    margin-top: 60px;     /* 給頁面內容留出空間，避免內容被固定的功能列覆蓋 */
+    position: relative;   /* 確保 body 可以顯示在固定的 header 下 */
+}
+
+main {
+    flex-grow: 1;  /* 使 main 区域占满剩余空间 */
+    padding: 20px;
+}
+
+
+
+/* 更改header樣式 */
+header {
+    background-color: whitesmoke;
+    height: 80px;       /* 頁首的高度 */
+    width: 100%;       /* 頁首的寬度100%與視窗同寬 */ 
+    top: 0;
+    position: fixed;     /* 固定在頁面頂部 */
+    z-index: 1000;
+}
+
+h1 {
+    position: absolute;     
+    left: 30px;
+    top: 0;
+    line-height: 80px;
+
+    background-image: url(images/shutterWave_logo.png);         /* 加入圖片 */
+    background-repeat: no-repeat;       /* 只顯示一張 */
+    background-position: center;        /* 移到中間 */
+    width: 400px;
+    background-size: 100%;
+    text-indent: -9999px;           /* h1可以方便網頁查詢，但又不想它出現，因此將它推到很遠的地方 */
+}
+
+/* 把功能列移到右上角 */
+header ul {
+    position: absolute;     
+    right: 3vw;
+    top: 0;
+    line-height: 90px;
+    font-family: 'Noto Serif TC', serif; 
+    font-weight: 700;  /* 設置字重為 Bold */
+    font-size: 18px;   /* 可以調整字體大小 */
+}
+
+/* li是block，把它們轉成一行 */
+header li {
+    display: inline;
+    margin-left: 8vw;          /*加大按鈕的右邊距，4vw表示viewpoint的4% */
+}
+
+/* css語法的對象是header裡面所有的a標籤 */
+header a {      
+    color: black;
+    text-decoration: none;      /* 文字裝飾設無，就不會有底線 */
+    font-size: 22px;
+}
+
+header a:hover {
+    color: cornflowerblue;
+    /*  text-decoration: underline;          設定底線只在游標碰到時顯示 */
+}
+
+/* 頁尾 */
+footer {
+    font-family: 'Noto Serif TC', serif; /* 使用思源宋體繁體版 */
+    font-weight: 600;  /* 設置字重為 Semi-Bold */
+    font-size: 15px;   /* 可以調整字體大小 */
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 2px 0;
+    margin-top: auto; /* 将页脚推到页面底部 */
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>我的商店</title>
+    <link rel="stylesheet" href="my_shop.css">
+    <link rel="stylesheet" href="common.css">
+    <!-- 思源宋體Semibold -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+    <!-- 思源宋體Bold -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>ShutterWave</h1>
+        <nav>
+          <ul>
+            <li><a href="#">會員中心</a></li>
+            <li><a href="home.html">首頁</a></li>
+            <li><a href="#" id="cart-btn">購物車</a></li>
+            <li><a href="my_shop.html">我的商店</a></li>
+          </ul>
+        </nav>
+    </header>
+
+
+    <main role="main">
+        <!--跳去註冊/登入頁面-->
+        <div class="login">
+            <a class="reg_link" href="login相關/register.html">註冊</a>
+            <span class="slash">/</span>
+            <a class="log_link" href="login相關/login.html">登入</a>
+        </div>
+        <div class="container">
+            <div id="productGrid"></div>
+            
+            <!-- New 按鈕 -->
+            <button class="btn-new" onclick="navigateToAddProduct()">New +</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </main>
+
+    
+
+    <script>
+        function navigateToAddProduct() {
+            window.location.href = 'addNewProduct.html';
+        }
+    </script>
+    <script src="my_shop.js"></script>
+    
+    <footer>
+        <p>Copyright © 2024 伶羽游詠 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
