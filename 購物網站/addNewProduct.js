@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 image: e.target.result,
                 active: true
             };
+            
+            // 取得現有資料，按品牌分組
+            const storedProducts = JSON.parse(localStorage.getItem("activeProducts")) || {};
+            if (!storedProducts[brand]) {
+                storedProducts[brand] = [];
+            }
+
+            // 將新商品加入對應品牌
+            storedProducts[brand].push(newProduct);
   
             // 添加到商品列表
             products.push(newProduct);

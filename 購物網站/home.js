@@ -332,5 +332,45 @@ document.addEventListener("DOMContentLoaded", () => {
       updateButtonStates();
     });
     
+    const mainContainer = document.getElementById("product-main"); // 確認你的 main 區域 ID 是正確的
+    const storeProducts = JSON.parse(localStorage.getItem("products")) || {};
 
+    // 如果沒有商品，保持頁面不變
+    if (Object.keys(storeProducts).length === 0) return;
+
+    Object.entries(storeProducts).forEach(([brand, products]) => {
+        // 品牌區塊
+        const brandDiv = document.createElement("div");
+        brandDiv.className = "brand";
+        brandDiv.textContent = brand;
+
+        // 商品區塊
+        const productSection = document.createElement("section");
+        productSection.className = "product";
+
+        products.forEach(product => {
+            const productItem = document.createElement("div");
+            productItem.className = "product-item";
+            productItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <p class="product_name">
+                    <span class="name"><a href="#">${product.name}</a></span>
+                    <span class="price">$ ${product.price}</span>
+                </p>
+                <div class="action-area">
+                    <div class="quantity-control">
+                        <button class="btn-decrease">-</button>
+                        <input type="text" class="quantity" value="1" readonly>
+                        <button class="btn-increase">+</button>
+                    </div>
+                    <button class="add-to-cart">加入購物車</button>
+                </div>
+            `;
+            productSection.appendChild(productItem);
+        });
+
+        // 插入頁面
+        mainContainer.appendChild(brandDiv);
+        mainContainer.appendChild(productSection);
+    });
 });

@@ -52,7 +52,7 @@ header ul {
     right: 3vw;
     top: 0;
     line-height: 90px;
-    font-family: 'Noto Serif TC', serif; 
+    
     font-weight: 700;  /* 設置字重為 Bold */
     font-size: 18px;   /* 可以調整字體大小 */
 }
