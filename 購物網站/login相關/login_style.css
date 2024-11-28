@@ -1,80 +1,19 @@
-/* 重置默认样式 */
 * {
+  /* 網站會預設css樣式，如果不想要可以先重置 */
   padding: 0;
   margin: 0;
 }
 
-/*
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh; 
-  display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  margin: -70px 10px 0px -50px;
-}
-*/
-
-/* 功能列 */
-header {
-  background-color: whitesmoke;
-  height: 80px; /* 頁首的高度 */
-  width: 100%; /* 頁首的寬度100%與視窗同寬 */
-}
-
-h1 {
-  color: black;
-  color: coral;
-  position: absolute;
-  left: 30px;
-  top: 0;
-  line-height: 80px;
-
-  background-image: url(../images/shutterWave_logo.png); /* 加入圖片 */
-  background-repeat: no-repeat; /* 只顯示一張 */
-  background-position: center; /* 移到中間 */
-  width: 400px;
-  background-size: 100%;
-  text-indent: -9999px; /* h1可以方便網頁查詢，但又不想它出現，因此將它推到很遠的地方 */
-}
-
-header ul {
-  position: absolute;
-  right: calc(3vw + 17px);
-  top: 0;
-  line-height: 90px;
-  font-family: "Noto Serif TC", serif;
-  font-weight: 700; /* 設置字重為 Bold */
-  font-size: 18px; /* 可以調整字體大小 */
-}
-
-header li {
-  display: inline;
-  margin-left: 8vw; /*加大按鈕的右邊距，4vw表示viewpoint的4% */
-}
-
-header a {
-  color: black;
-  text-decoration: none; /* 文字裝飾設無，就不會有底線 */
-  font-size: 22px;
-}
-
-header a:hover {
-  color: cornflowerblue;
-  /*  text-decoration: underline;          設定底線只在游標碰到時顯示 */
-}
-
-/* 登入註冊-功能列 */
+/* 登入註冊功能列 */
 .login {
   display: flex;
   margin-top: 10px;
-  margin-left: 10px;
+  margin-left: 0;
 }
 
 .reg_link,
 .log_link {
-  font-family: "Noto Serif TC", serif;
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
   font-weight: 600;
   font-size: 15px;
   color: darkgrey;
@@ -87,8 +26,7 @@ header a:hover {
 }
 
 .slash {
-  /*  /  */
-  font-family: "Noto Serif TC", serif;
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
   font-weight: 600;
   font-size: 15px;
   color: darkgrey;

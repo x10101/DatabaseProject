@@ -1,0 +1,37 @@
+/* 請先登入訊息 */
+.login-message {
+  position: absolute;
+  top: calc(50% + 40px); /* 50% 往下偏移一半功能列高度 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.login-message p {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.login-btn:hover {
+  backgr footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    padding: 2px 0;
+    font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+    font-weight: 600; /* 設置字重為 Semi-Bold */
+    font-size: 15px; /* 可以調整字體大小 */
+    background-color: whitesmoke;
+  }
+}

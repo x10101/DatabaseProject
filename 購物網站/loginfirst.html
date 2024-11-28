@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- !加上tab會有基本框架 -->
+<html lang="zh_TW">
+  <!--網頁使用的語言-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>請先登入</title>
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="loginfirst.css" />
+    <!-- 思源宋體Semibold -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 思源宋體Bold -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- HTML5
+    header:網站logo.頁首等相關資訊
+    nav:網站導覽列、主選單
+    main:網頁主要的內容
+    section:main裡面想分成多個區塊
+    footer:頁尾，通常用來標註版權聲明資訊 -->
+    <header>
+      <h1>ShutterWave</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Membership</a></li>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#" id="cart-btn">Cart</a></li>
+          <li><a href="my_shop.html">my Shop</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="product-main">
+      <!--跳去註冊/登入頁面-->
+      <div class="login">
+        <a class="reg_link" href="login相關/register.html">註冊</a>
+        <span class="slash">/</span>
+        <a class="log_link" href="login相關/login.html">登入</a>
+      </div>
+    </main>
+
+    <!-- 主體內容 -->
+    <div class="container" id="main-content">
+        <!-- 預設顯示請先登入 -->
+        <div class="login-message" id="login-message">
+            <p>請先登入會員</p>
+            <a href="login相關/login.html" class="login-btn">登入</a>
+        </div>
+    <div>
+
+    <footer>
+      <p>Copyright © 2024 伶羽游詠 All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

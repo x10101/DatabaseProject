@@ -1,18 +1,29 @@
-<!DOCTYPE html>     <!-- !加上tab會有基本框架 -->
-<html lang="zh_TW">     <!--網頁使用的語言-->
+<!DOCTYPE html>
+<!-- !加上tab會有基本框架 -->
+<html lang="zh_TW">
+  <!--網頁使用的語言-->
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>首頁</title>
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="cart_main.css">
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="cart_main.css" />
     <!-- 思源宋體Semibold -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <!-- 思源宋體Bold -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <!-- 搜尋圖式 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <script src="home.js"></script>
   </head>
 
@@ -27,7 +38,7 @@
       <h1>ShutterWave</h1>
       <nav>
         <ul>
-          <li><a href="#">Membership</a></li>
+          <li><a href="loginfirst.html">Membership</a></li>
           <li><a href="home.html">Home</a></li>
           <li><a href="#" id="cart-btn">Cart</a></li>
           <li><a href="my_shop.html">my Shop</a></li>
@@ -36,389 +47,389 @@
     </header>
 
     <main id="product-main">
-        <!--跳去註冊/登入頁面-->
-        <div class="login">
-          <a class="reg_link" href="login相關/register.html">註冊</a>
-          <span class="slash">/</span>
-          <a class="log_link" href="login相關/login.html">登入</a>
+      <!--跳去註冊/登入頁面-->
+      <div class="login">
+        <a class="reg_link" href="login相關/register.html">註冊</a>
+        <span class="slash">/</span>
+        <a class="log_link" href="login相關/login.html">登入</a>
+      </div>
+
+      <!-- 搜尋 -->
+      <section>
+        <div class="search-container">
+          <input type="text" placeholder="輸入商品名稱查詢" />
+          <button type="button" id="clear-search" style="display: none">
+            &times;
+          </button>
+          <!-- 叉叉按鈕 -->
+          <button><i class="fas fa-search"></i></button>
+        </div>
+      </section>
+
+      <!-- 搜尋結果區域 -->
+      <section id="search-results" style="display: none">
+        <!-- 預設隱藏 -->
+        <h3>搜尋結果</h3>
+        <div class="results"></div>
+      </section>
+
+      <!-- 產品 -->
+      <div class="brand">Canon</div>
+      <section class="product">
+        <div class="product-item">
+          <img src="images/R10 $ 39,900.png" alt="EOS R10" />
+
+          <p class="product_name">
+            <span class="name"><a href="#">Canon R10</a></span>
+            <span class="price">$ 39,900</span>
+          </p>
+
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
+            </div>
+            <button class="add-to-cart">加入購物車</button>
+          </div>
         </div>
 
-        <!-- 搜尋 -->
-        <section>
-          <div class="search-container">
-            <input type="text" placeholder="輸入商品名稱查詢" />
-            <button type="button" id="clear-search" style="display: none;">&times;</button> <!-- 叉叉按鈕 -->
-            <button><i class="fas fa-search"></i></button> 
-          </div>
-        </section>
+        <div class="product-item">
+          <img src="images/RP $ 43,800.png" alt="EOS RP" />
 
-        <!-- 搜尋結果區域 -->
-        <section id="search-results" style="display: none;"> <!-- 預設隱藏 -->
-          <h3>搜尋結果</h3>
-          <div class="results"></div>
-        </section>
-    
-        <!-- 產品 -->
-        <div class="brand">Canon</div>
-        <section class="product">
-          
-          <div class="product-item">
-            <img src="images/R10 $ 39,900.png" alt="EOS R10">
+          <p class="product_name">
+            <span class="name"><a href="Canon_RP.html">Canon RP</a></span>
+            <span class="price">$ 43,800</span>
+          </p>
 
-            <p class="product_name">
-              <span class="name"><a href="#">Canon R10</a></span>
-              <span class="price">$ 39,900</span>
-            </p>
-
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-              <img src="images/RP $ 43,800.png" alt="EOS RP">
-              
-              <p class="product_name">
-                <span class="name"><a href="Canon_RP.html">Canon RP</a></span>
-                <span class="price">$ 43,800</span>
-              </p>
+        <div class="product-item">
+          <img src="images/R8 $ 49,900.png" alt="EOS R8" />
 
-              <!-- 加入購物車區域 -->
-              <div class="action-area">
-                <div class="quantity-control">
-                  <button class="btn-decrease">-</button>
-                  <input type="text" class="quantity" value="1" readonly />
-                  <button class="btn-increase">+</button>
-                </div>
-                <button class="add-to-cart">加入購物車</button>
-              </div>
-          </div>
+          <p class="product_name">
+            <span class="name"><a href="#">Canon R8</a></span>
+            <span class="price">$ 49,900</span>
+          </p>
 
-          <div class="product-item">
-            <img src="images/R8 $ 49,900.png" alt="EOS R8">
-
-            <p class="product_name">
-              <span class="name"><a href="#">Canon R8</a></span>
-              <span class="price">$ 49,900</span>
-            </p>
-
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/R7 $ 53,900.png" alt="EOS R7">
+        <div class="product-item">
+          <img src="images/R7 $ 53,900.png" alt="EOS R7" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Canon R7</a></span>
-              <span class="price">$ 53,900</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Canon R7</a></span>
+            <span class="price">$ 53,900</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/R6 $ 78,800.png" alt="EOS R6">
+        <div class="product-item">
+          <img src="images/R6 $ 78,800.png" alt="EOS R6" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Canon R6</a></span>
-              <span class="price">$ 78,800</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Canon R6</a></span>
+            <span class="price">$ 78,800</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/R5 $ 156,100.png" alt="EOS R5">
+        <div class="product-item">
+          <img src="images/R5 $ 156,100.png" alt="EOS R5" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Canon R5</a></span>
-              <span class="price">$ 156,100</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Canon R5</a></span>
+            <span class="price">$ 156,100</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
       </section>
-      
-      <br>
+
+      <br />
       <div class="brand">Nikon</div>
-        <section class="product">
-          
-          <div class="product-item">
-            <img src="images/Z fc $ 36,600.png" alt="Z fc">
+      <section class="product">
+        <div class="product-item">
+          <img src="images/Z fc $ 36,600.png" alt="Z fc" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Nikon Z fc</a></span>
-              <span class="price">$36,600</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Nikon Z fc</a></span>
+            <span class="price">$36,600</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-              <img src="images/Z30 $ 38,900.png" alt="Z30">
-              
-              <p class="product_name">
-                <span class="name"><a href="#">Nikon Z30</a></span>
-                <span class="price">$ 38,900</span>
-              </p>
+        <div class="product-item">
+          <img src="images/Z30 $ 38,900.png" alt="Z30" />
 
-              <!-- 加入購物車區域 -->
-              <div class="action-area">
-                <div class="quantity-control">
-                  <button class="btn-decrease">-</button>
-                  <input type="text" class="quantity" value="1" readonly />
-                  <button class="btn-increase">+</button>
-                </div>
-                <button class="add-to-cart">加入購物車</button>
-              </div>
-          </div>
+          <p class="product_name">
+            <span class="name"><a href="#">Nikon Z30</a></span>
+            <span class="price">$ 38,900</span>
+          </p>
 
-          <div class="product-item">
-            <img src="images/Zf $ 80,880.png" alt="Zf">
-
-            <p class="product_name">
-              <span class="name"><a href="#">Nikon Zf</a></span>
-              <span class="price">$ 80,880</span>
-            </p>
-
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/Z6III $ 98,800.png" alt="Z6III">
+        <div class="product-item">
+          <img src="images/Zf $ 80,880.png" alt="Zf" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Nikon Z6III</a></span>
-              <span class="price">$ 98,800</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Nikon Zf</a></span>
+            <span class="price">$ 80,880</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/Z7II $ 109,500.png" alt="Z7II">
+        <div class="product-item">
+          <img src="images/Z6III $ 98,800.png" alt="Z6III" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Nikon Z7II</a></span>
-              <span class="price">$ 109,500</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Nikon Z6III</a></span>
+            <span class="price">$ 98,800</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/Z8 $ 141,580.png" alt="Z8">
+        <div class="product-item">
+          <img src="images/Z7II $ 109,500.png" alt="Z7II" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">Nikon Z8</a></span>
-              <span class="price">$ 141,580</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">Nikon Z7II</a></span>
+            <span class="price">$ 109,500</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
+
+        <div class="product-item">
+          <img src="images/Z8 $ 141,580.png" alt="Z8" />
+
+          <p class="product_name">
+            <span class="name"><a href="#">Nikon Z8</a></span>
+            <span class="price">$ 141,580</span>
+          </p>
+
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
+            </div>
+            <button class="add-to-cart">加入購物車</button>
+          </div>
+        </div>
       </section>
 
-      <br>
+      <br />
       <div class="brand">SONY</div>
-        <section class="product">
-          
-          <div class="product-item">
-            <img src="images/α7 $ 28,980.png" alt="α7">
+      <section class="product">
+        <div class="product-item">
+          <img src="images/α7 $ 28,980.png" alt="α7" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">SONY α7</a></span>
-              <span class="price">$ 28,980</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">SONY α7</a></span>
+            <span class="price">$ 28,980</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-              <img src="images/α7 II $ 29,980.png" alt="α7 II">
-              
-              <p class="product_name">
-                <span class="name"><a href="#">SONY α7 II</a></span>
-                <span class="price">$ 29,980</span>
-              </p>
+        <div class="product-item">
+          <img src="images/α7 II $ 29,980.png" alt="α7 II" />
 
-              <!-- 加入購物車區域 -->
-              <div class="action-area">
-                <div class="quantity-control">
-                  <button class="btn-decrease">-</button>
-                  <input type="text" class="quantity" value="1" readonly />
-                  <button class="btn-increase">+</button>
-                </div>
-                <button class="add-to-cart">加入購物車</button>
-              </div>
-          </div>
+          <p class="product_name">
+            <span class="name"><a href="#">SONY α7 II</a></span>
+            <span class="price">$ 29,980</span>
+          </p>
 
-          <div class="product-item">
-            <img src="images/α7R IV $ 79,980.png" alt="α7R IV">
-
-            <p class="product_name">
-              <span class="name"><a href="#">SONY α7R IV</a></span>
-              <span class="price">$ 79,980</span>
-            </p>
-
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/α7S III $ 94,980.png" alt="α7S III">
+        <div class="product-item">
+          <img src="images/α7R IV $ 79,980.png" alt="α7R IV" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">SONY α7S III</a></span>
-              <span class="price">$ 94,980</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">SONY α7R IV</a></span>
+            <span class="price">$ 79,980</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/α9 $ 104,980.png" alt="α9">
+        <div class="product-item">
+          <img src="images/α7S III $ 94,980.png" alt="α7S III" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">SONY α9</a></span>
-              <span class="price">$ 104,980</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">SONY α7S III</a></span>
+            <span class="price">$ 94,980</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
 
-          <div class="product-item">
-            <img src="images/α1 $ 174,980.png" alt="α1">
+        <div class="product-item">
+          <img src="images/α9 $ 104,980.png" alt="α9" />
 
-            <p class="product_name">
-              <span class="name"><a href="#">SONY α1</a></span>
-              <span class="price">$ 174,980</span>
-            </p>
+          <p class="product_name">
+            <span class="name"><a href="#">SONY α9</a></span>
+            <span class="price">$ 104,980</span>
+          </p>
 
-            <!-- 加入購物車區域 -->
-            <div class="action-area">
-              <div class="quantity-control">
-                <button class="btn-decrease">-</button>
-                <input type="text" class="quantity" value="1" readonly />
-                <button class="btn-increase">+</button>
-              </div>
-              <button class="add-to-cart">加入購物車</button>
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
             </div>
+            <button class="add-to-cart">加入購物車</button>
           </div>
+        </div>
+
+        <div class="product-item">
+          <img src="images/α1 $ 174,980.png" alt="α1" />
+
+          <p class="product_name">
+            <span class="name"><a href="#">SONY α1</a></span>
+            <span class="price">$ 174,980</span>
+          </p>
+
+          <!-- 加入購物車區域 -->
+          <div class="action-area">
+            <div class="quantity-control">
+              <button class="btn-decrease">-</button>
+              <input type="text" class="quantity" value="1" readonly />
+              <button class="btn-increase">+</button>
+            </div>
+            <button class="add-to-cart">加入購物車</button>
+          </div>
+        </div>
       </section>
 
-      <br>
-      <br>
-      <br>
-      
+      <br />
+      <br />
+      <br />
     </main>
 
     <div id="shopping-cart" class="cart-hidden">
@@ -429,11 +440,9 @@
         </ul>
       </div>
       <div class="cart-total">
-          <span>總金額：</span><span id="total-price">$ 0</span>
+        <span>總金額：</span><span id="total-price">$ 0</span>
       </div>
       <button class="checkout-btn">結帳</button>
-      
-      
     </div>
 
     <footer>
