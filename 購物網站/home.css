@@ -1,0 +1,264 @@
+* {
+    /* 網站會預設css樣式，如果不想要可以先重置 */
+    padding: 0;
+    margin: 0;
+}
+
+/* 登入註冊功能列 */
+.login {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+.reg_link, .log_link {
+    font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+    font-weight: 600;
+    font-size: 15px;
+    color:darkgrey;
+    text-decoration: none;
+}
+
+.reg_link:hover, .log_link:hover {
+    text-decoration: underline;
+}
+
+.slash {
+    font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+    font-weight: 600;
+    font-size: 15px;
+    color:darkgrey;
+    text-decoration: none;
+    align-items:baseline;
+}
+
+
+
+/* 搜尋框 */
+.search-container {
+    display: flex;             /* 使用 Flexbox 讓輸入框和按鈕排列在同一行 */
+    align-items: center;       /* 垂直置中 */
+    border: 2px solid #ccc;    /* 給容器加上邊框 */
+    border-radius: 5px;        /* 圓角效果 */
+    background-color: #fff;    /* 背景顏色 */
+    overflow: hidden;          /* 確保內容不會超出容器 */
+    width: 50vw;
+    margin: 15px auto 0 auto;
+}
+
+/* 當輸入框獲得焦點時，內框加粗 */
+.search-container input:focus {
+    
+    outline: none;           /* 移除默認的黑框樣式 */
+}
+
+.search-container input {
+    border: none;              /* 移除輸入框的邊框 */
+    padding: 10px;              /* 內邊距 */
+    font-size: 16px;            /* 字體大小 */
+    flex-grow: 1;               /* 讓輸入框佔據容器的剩餘空間 */
+}
+
+.search-container button {
+    border: none;              /* 移除按鈕的邊框 */
+    padding: 10px 11px 10px 13px;              /* 按鈕內邊距 */
+    background-color: whitesmoke;  /* 按鈕背景顏色 */
+    color: black;               /* 文字顏色 */
+    cursor: pointer;           /* 鼠標指針樣式 */
+    font-size: 18px;            /* 調整圖示大小 */
+}
+
+.search-container button i {
+    font-size: 20px;            /* 設定圖示大小 */
+}
+
+.search-container button:hover i{
+    color: coral;  /* 改變按鈕的背景顏色 */
+    /*border-radius: 5px;*/
+}
+
+
+
+/* 品牌名稱 */
+.brand {         
+    font-size: 40px;        
+    font-weight: bold;      
+    margin: 50px 0 -40px 60px;  
+    display: block;
+}
+
+
+
+/* 產品細項 */
+.product {
+    display: flex;
+    flex-wrap: wrap;        /* 允許自動換行 */
+    justify-content: flex-start; /* 子項目靠左對齊 */
+    width: 80vw;            /* 區塊寬度為螢幕的 3/4 */
+    margin-left: 20px;              /* 緊貼左側 */
+    padding: 50px ;        /* 上下內邊距，左右無內邊距 */
+    box-sizing: border-box; /* 包括 padding 在內計算寬度 */
+    gap: 50px 100px;              /* 子項目間距 */
+    margin-top: -5px;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column; /* 垂直排列：圖片在上，名稱在下 */
+    align-items: flex-start; /* 圖片與名稱左對齊 */
+    position: relative;      /* 為了更靈活定位名稱和價格 */
+    max-width: 250px;        /* 限制最大寬度 */
+    box-sizing: border-box;  /* 包括內邊距在內計算寬度 */
+}
+
+.product-item img {
+    width: 100%;            /* 圖片寬度根據容器調整 */
+    max-width: 250px;       /* 最大寬度限制為 250px */
+    height: auto;           /* 保持圖片比例 */
+    margin-bottom: 5px;     /* 與名稱之間的距離 */
+}
+
+.product-item .product_name {
+    display: flex;
+    justify-content: space-between; /* 名稱靠左，價格靠右 */
+    align-items:baseline;           
+    width: 100%;                   /* 名稱區塊寬度與圖片一致 */
+    box-sizing: border-box;        /* 確保內邊距包含在寬度內 */
+    padding: 0 10px;               /* 名稱與價格左右各留 10px */
+    text-decoration: none;
+}
+
+.product_name .name a {
+    text-align: left;        /* 名稱靠左對齊 */
+    flex: 5;                 /* 名稱佔據剩餘空間 */
+    color: black;                  /* 文字顏色 */
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold
+}
+
+.product_name .name a:hover {
+        color: cornflowerblue;
+}
+
+.product_name .price {
+    text-align: right;       /* 價格靠右對齊 */
+    flex-shrink: 0;          /* 防止價格壓縮 */
+    font-size: 20px;
+    color: cornflowerblue; 
+}
+
+
+
+/* 加入購物車功能 */
+.action-area {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px; /* 控制按鈕和數量控件的間距 */
+}
+
+/* 數量調整控制區 */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 120px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.btn-decrease, .btn-increase {
+    background-color:lightgrey;
+    color: white;
+    border: none;
+    font-size: 16px;
+    width: 40px;
+    height: 100%;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-decrease:hover, .btn-increase:hover{
+    color: cornflowerblue;
+}
+
+.btn-decrease:disabled, .btn-increase:disabled {
+    cursor: not-allowed;
+}
+
+.quantity {
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    height: 100%;
+    color: lightslategrey;
+}
+
+    /* 加入購物車按鈕 */
+.add-to-cart {
+    background-color:coral;
+    color: white;
+    padding: 2px 6px 4px 6px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* 保持橫向排列 */
+    width: 60%; /* 讓按鈕佔據容器的整個寬度（可選） */
+    max-width: 200px; /* 設定按鈕的最大寬度 */
+    height: 32px;
+}
+
+.add-to-cart:hover {
+    background-color: rgb(238, 104, 56);
+}
+
+
+#search-results {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.result-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.result-name {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.result-price {
+    color: green;
+}
+
+#clear-search {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#clear-search:hover {
+    color: darkred;
+}

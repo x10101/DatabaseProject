@@ -1,0 +1,131 @@
+#shopping-cart {
+    position: fixed;
+    top: 80px;           /* 購物車的頂部對齊頁首底部 */
+    right: 0;
+    width: calc(40% - 18px);
+    height: calc(95vh - 80px); /* 高度為視窗高度減去頁首的高度 */
+    background-color: #fff;
+    box-shadow: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  #shopping-cart.cart-visible {
+    transform: translateX(0);
+  }
+  
+  .cart-content {
+    flex-grow: 1; /* 讓內容區域占滿剩餘空間 */
+    overflow-y: auto; /* 添加垂直滾動條 */
+    max-height: calc(95vh - 150px); /* 設置最大高度，避免總金額被遮住 */
+    padding-bottom: 20px; /* 添加底部間距，避免內容貼近總金額 */
+  }
+  
+  .cart-items {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cart-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 四列均分寬度 */
+    align-items: center; /* 垂直居中對齊 */
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd; /* 每項商品之間添加分隔線 */
+    padding: 10px 0;
+  }
+  
+  .cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 15px; /* 圖片和商品名稱之間的間距 */
+  }
+  
+  .cart-image{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px; /* 圖片和商品名稱之間的間距 */
+  }
+  .cart-item-details {
+    display: flex;
+    align-items: center; /* 使名稱、價格、數量控件都在同一行 */
+    flex-grow: 1;
+    justify-content: space-between; /* 使內容左右對齊 */
+  }
+  
+  .cart-item-info {
+    display: flex;
+    flex-direction: column; /* 名稱和價格在垂直方向排列 */
+    flex-grow: 1;           /* 讓名稱和價格區域占據剩餘空間 */
+  }
+  
+  .cart-item-name {
+    font-weight: bold;
+  }
+  
+  .cart-item-price {
+    color: #888;
+  }
+  
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 居中數量控制 */
+    gap: 5px;
+  }
+  
+  .quantity-control input {
+    width: 40px;
+    text-align: center;
+    margin: 0 5px; /* 按鈕間距 */
+  }
+  
+  .remove-item {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* 刪除按鈕和數量控制區有間距 */
+  }
+  
+  .cart-total {
+    position: absolute;
+    left: 20px;     /* 固定在左下角 */
+    bottom: 20px;   /* 固定在下方 */
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .checkout-btn {
+    position: absolute;
+    right: 20px;    /* 固定在右下角 */
+    bottom: 20px;   /* 固定在下方 */
+    width: auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #cart-overlay { 
+    position: fixed;
+    top: 80px;            /* 遮罩的頂部也對齊頁首底部 */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 80px); /* 高度為視窗高度減去頁首的高度 */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+  }
+  
+  #cart-overlay.visible {
+    display: block;
+  }
+  
