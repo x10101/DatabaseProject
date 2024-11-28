@@ -21,7 +21,6 @@ header {
   background-color: whitesmoke;
   height: 80px; /* 頁首的高度 */
   width: 100%; /* 頁首的寬度100%與視窗同寬 */
-  
 }
 
 h1 {
@@ -88,6 +87,7 @@ header a:hover {
 }
 
 .slash {
+  /*  /  */
   font-family: "Noto Serif TC", serif;
   font-weight: 600;
   font-size: 15px;
@@ -97,14 +97,50 @@ header a:hover {
 }
 
 /* 登入輸入框 */
-.text-input {
+.register-text-input {
   padding: 30px; /* 調整內部間距（讓框框更高或更窄） */
-  border-radius: 20px;
+  border-radius: 12px; /* 框框的弧度 */
   display: flex;
   flex-direction: column; /* 子元素垂直排列 */
-  gap: 20px; /* 子元素之間的間距 */
-  width: 500px; /* 調整框框的寬度（更大或更小） */
-  height: 350px; /* 調整框框的寬度（更大或更小） */
+  gap: 15px; /* 子元素之間的間距 */
+  width: 300px; /* 調整框框的寬度（更大或更小） */
+  height: 280px; /* 調整框框的寬度（更大或更小） */
+  align-items: center; /* 子元素水平居中 */
+  justify-content: center; /* 子元素垂直居中 */
+  margin: 80px auto; /* 讓框框居中於頁面 */
+
+  background-color: #fff; /* 背景為白色 */
+  border: 1px solid #ddd; /* 邊框顏色為淺灰 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加輕微陰影 */
+  max-width: 90%; /* 確保框框在小屏幕上不會超出視窗寬度 */
+}
+
+.login-text-input {
+  padding: 30px; /* 調整內部間距（讓框框更高或更窄） */
+  border-radius: 12px; /* 框框的弧度 */
+  display: flex;
+  flex-direction: column; /* 子元素垂直排列 */
+  gap: 15px; /* 子元素之間的間距 */
+  width: 300px; /* 調整框框的寬度（更大或更小） */
+  height: 200px; /* 調整框框的寬度（更大或更小） */
+  align-items: center; /* 子元素水平居中 */
+  justify-content: center; /* 子元素垂直居中 */
+  margin: 80px auto; /* 讓框框居中於頁面 */
+
+  background-color: #fff; /* 背景為白色 */
+  border: 1px solid #ddd; /* 邊框顏色為淺灰 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加輕微陰影 */
+  max-width: 90%; /* 確保框框在小屏幕上不會超出視窗寬度 */
+}
+
+.forget-text-input {
+  padding: 30px; /* 調整內部間距（讓框框更高或更窄） */
+  border-radius: 12px; /* 框框的弧度 */
+  display: flex;
+  flex-direction: column; /* 子元素垂直排列 */
+  gap: 15px; /* 子元素之間的間距 */
+  width: 300px; /* 調整框框的寬度（更大或更小） */
+  height: 230px; /* 調整框框的寬度（更大或更小） */
   align-items: center; /* 子元素水平居中 */
   justify-content: center; /* 子元素垂直居中 */
   margin: 80px auto; /* 讓框框居中於頁面 */
@@ -125,21 +161,20 @@ header a:hover {
 
 /* 輸入框樣式 */
 .input {
-  font-size: 20px;
-  width: 100%; /* 輸入框寬度填滿父容器 */
+  font-size: 16px;
+  width: 90%; /* 輸入框寬度填滿父容器 */
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   box-sizing: border-box; /* 確保 padding 不影響寬度 */
 }
 
 /* 忘記密碼樣式 */
 .form-action {
   display: flex;
-  justify-content: center; /* 水平居中 */
   justify-content: flex-end;
-  width: 80%; /* 寬度與父容器一致 */
-  margin-top: 5px; /* 與輸入框的間距 */
+  width: 70%; /* 寬度與父容器一致 */
+  margin-top: -5px; /* 與輸入框的間距 */
 }
 
 .forgetpw {
@@ -160,18 +195,18 @@ header a:hover {
   display: flex;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .log_bt button,
 .resetpw_bt button,
 .reg_bt button {
-  padding: 6px 180px;
-  font-size: 20px;
+  padding: 6px 90px;
+  font-size: 17px;
   color: #fff;
   background-color: #007bff;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
