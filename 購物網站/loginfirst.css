@@ -1,15 +1,25 @@
+* {
+  /* 網站會預設css樣式，如果不想要可以先重置 */
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* 防止不必要的滾動 */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* 標籤與輸入框垂直排列 */
+  align-items: center; /* 水平居中 */
+  justify-content: center; /* 子元素垂直居中 */
+  height: 80%; /* 寬度填滿父容器 */
+}
 /* 請先登入訊息 */
 .login-message {
-  position: absolute;
-  top: calc(50% + 40px); /* 50% 往下偏移一半功能列高度 */
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
 }
 
-.login-message p {
+.loginfirst-message {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* 登入訊息跟按鈕之間的距離*/
 }
 
 .login-btn {
@@ -21,17 +31,34 @@
   border-radius: 5px;
 }
 
-.login-btn:hover {
-  backgr footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    padding: 2px 0;
-    font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
-    font-weight: 600; /* 設置字重為 Semi-Bold */
-    font-size: 15px; /* 可以調整字體大小 */
-    background-color: whitesmoke;
-  }
+.noaccount-message {
+  font-size: 15px;
+  margin-top: 20px; /* 登入訊息跟按鈕之間的距離*/
+}
+
+.reg_link {
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(0, 26, 255);
+  text-decoration: none;
+  display: inline; /* 保持與文字在同一行 */
+  margin-left: 7px;
+}
+
+.reg_link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 2px 0;
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600; /* 設置字重為 Semi-Bold */
+  font-size: 15px; /* 可以調整字體大小 */
+  background-color: whitesmoke;
 }

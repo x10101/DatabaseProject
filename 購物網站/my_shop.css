@@ -1,258 +1,264 @@
+* {
+  /* 網站會預設css樣式，如果不想要可以先重置 */
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* 防止不必要的滾動 */
+}
+
 /* 按鈕通用樣式 */
 button {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 /* 新增商品按鈕 */
 .btn-new {
-    background-color:coral;
-    color: white;
-    position: fixed;
-    bottom: 70px;
-    right: 50px;
-    padding: 20px 20px;
+  background-color: coral;
+  color: white;
+  position: fixed;
+  bottom: 70px;
+  right: 50px;
+  padding: 20px 20px;
 }
-
 
 /* 編輯按鈕 */
 .edit-btn {
-    background-color:rgb(241, 241, 240);
-    color: white;
-    border-radius: 4px;
-    font-size: 12px;
-    width: 50px; /* 固定寬度 */
-    height: calc(100% - 40px); /* 高度 = 商品框高度 - 上下各 20px */
-    position: absolute;
-    right: 10px;
-    top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  background-color: rgb(241, 241, 240);
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  width: 50px; /* 固定寬度 */
+  height: calc(100% - 40px); /* 高度 = 商品框高度 - 上下各 20px */
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .edit-btn:hover {
-    background-color: cornsilk;
+  background-color: cornsilk;
 }
 
 /* 下架按鈕 */
 .btn-toggle {
-    background-color: #f44336;
-    color: white;
-    border-radius: 4px;
-    padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
 }
 
 .btn-toggle:hover {
-    background-color: #d32f2f;
+  background-color: #d32f2f;
 }
 
 /* 商品框架 */
 .product-card {
-    display: flex;
-    flex-direction: column;
-    width: 60%; /* 商品框寬度為畫面60% */
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* 置中 */
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 60%; /* 商品框寬度為畫面60% */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* 置中 */
+  position: relative;
 }
 
 /* 品牌 */
 .product-brand {
-    position: absolute;
-    top: 0; /* 貼齊商品框框的上方 */
-    left: 0; /* 貼齊商品框框的左方 */
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    background-color: #fff; /* 背景白色 */
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 4px 0; /* 左上角圓角 */
+  position: absolute;
+  top: 0; /* 貼齊商品框框的上方 */
+  left: 0; /* 貼齊商品框框的左方 */
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  background-color: #fff; /* 背景白色 */
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 4px 0; /* 左上角圓角 */
 }
 
 /* 商品內容排版 */
 .product-horizontal {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .product-left {
-    flex: 0 0 150px; /* 固定圖片區域大小 */
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
+  flex: 0 0 150px; /* 固定圖片區域大小 */
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
 }
 
 .product-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 4px;
-    object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
+  object-fit: cover;
 }
 
 .product-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 商品名稱 */
 .product-name {
-
-    padding-left: 20px; /* 與圖片左緣間隔10px */
-    margin-top: auto; /* 底部對齊 */
-    margin-bottom: 20px; /* 距離框框底部20px */
-    font-weight: bold;
-    font-size: 16px;
-    border: none; /* 預設無框 */
-    background-color: transparent; /* 背景透明 */
+  padding-left: 20px; /* 與圖片左緣間隔10px */
+  margin-top: auto; /* 底部對齊 */
+  margin-bottom: 20px; /* 距離框框底部20px */
+  font-weight: bold;
+  font-size: 16px;
+  border: none; /* 預設無框 */
+  background-color: transparent; /* 背景透明 */
 }
 
 .product-name:focus {
-    outline: 1px solid black; /* 點擊時顯示細黑框 */
+  outline: 1px solid black; /* 點擊時顯示細黑框 */
 }
 
 .product-name[readonly] {
-    border: none; /* 禁用時無框 */
+  border: none; /* 禁用時無框 */
 }
 
 .product-name:not([readonly]) {
-    border: 1px solid #ddd; /* 編輯時顯示淺灰框 */
+  border: 1px solid #ddd; /* 編輯時顯示淺灰框 */
 }
 
 /* 商品價格 */
 .product-price {
-    text-align: left;
-    margin-left: 10px; /* 與文字敘述框左對齊 */
-    margin-top: 15px;
-    font-weight: bold;
-    border: none; /* 預設無框 */
-    background-color: transparent;
+  text-align: left;
+  margin-left: 10px; /* 與文字敘述框左對齊 */
+  margin-top: 15px;
+  font-weight: bold;
+  border: none; /* 預設無框 */
+  background-color: transparent;
 }
 
 .product-price:focus {
-    outline: 1px solid black; /* 點擊時顯示細黑框 */
+  outline: 1px solid black; /* 點擊時顯示細黑框 */
 }
 
 .product-price[readonly] {
-    border: none; /* 禁用時無框 */
+  border: none; /* 禁用時無框 */
 }
 
 .product-price:not([readonly]) {
-    border: 1px solid #ddd; /* 編輯時顯示淺灰框 */
+  border: 1px solid #ddd; /* 編輯時顯示淺灰框 */
 }
 
 /* 數量輸入框 */
 .product-quantity-input {
-    text-align: center;
-    width: 60px;
-    border: none; /* 預設無框 */
-    background-color: transparent;
-    margin-right: 50px; /* 與下架按鈕間隔50px */
+  text-align: center;
+  width: 60px;
+  border: none; /* 預設無框 */
+  background-color: transparent;
+  margin-right: 50px; /* 與下架按鈕間隔50px */
 }
 
 .product-quantity-input:focus {
-    outline: 1px solid black; /* 點擊時顯示細黑框 */
+  outline: 1px solid black; /* 點擊時顯示細黑框 */
 }
 
 .product-quantity-input[readonly] {
-    border: none; /* 禁用時無框 */
+  border: none; /* 禁用時無框 */
 }
 
 .product-quantity-input:not([readonly]) {
-    border: 1px solid #ddd; /* 編輯時顯示淺灰框 */
+  border: 1px solid #ddd; /* 編輯時顯示淺灰框 */
 }
 
 /* 商品敘述框 */
 .product-description {
-    margin-top: 10px;
-    margin-left: 10px;
-    bottom: 10px;
-    width: 80%;
-    height: 100px;
-    border: 1px solid whitesmoke; /* 淺灰色邊框 */
-    border-radius: 4px;
-    padding: 5px;
-    resize: none; /* 禁止用戶調整大小 */
+  margin-top: 10px;
+  margin-left: 10px;
+  bottom: 10px;
+  width: 80%;
+  height: 100px;
+  border: 1px solid whitesmoke; /* 淺灰色邊框 */
+  border-radius: 4px;
+  padding: 5px;
+  resize: none; /* 禁止用戶調整大小 */
 }
 
 .product-description[readonly] {
-    border: 1px solid #eee; /* 保持細邊框 */
-    background-color: #f9f9f9; /* 更亮的灰色背景 */
+  border: 1px solid #eee; /* 保持細邊框 */
+  background-color: #f9f9f9; /* 更亮的灰色背景 */
 }
 
 /* 禁用框線 */
 [readonly] {
-    pointer-events: none; /* 禁止用戶點擊 */
-    background-color: transparent;
+  pointer-events: none; /* 禁止用戶點擊 */
+  background-color: transparent;
 }
 
 /* 品牌標題 */
 h2 {
-    font-size:2em;
-    color: #333;
-    font-weight: 700;
-    margin: 30px 0 30px 200px;
-    
+  font-size: 2em;
+  color: #333;
+  font-weight: 700;
+  margin: 30px 0 30px 200px;
 }
 
 /* 全局布局设置 */
-html, body {
-    height: 100%;
-    margin: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-    flex-grow: 1;  /* 使 main 区域占满剩余空间 */
-    padding: 20px;
+  flex-grow: 1; /* 使 main 区域占满剩余空间 */
+  padding: 20px;
 }
 
 footer {
-    margin-top: auto; /* 将页脚推到页面底部 */
+  margin-top: auto; /* 将页脚推到页面底部 */
 }
 
 /* 登入註冊功能列 */
 .login {
-    display: flex;
-    margin-top: 10px;
-    margin-left: 0;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 0;
 }
 
-.reg_link, .log_link {
-    font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
-    font-weight: 600;
-    font-size: 15px;
-    color:darkgrey;
-    text-decoration: none;
+.reg_link,
+.log_link {
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600;
+  font-size: 15px;
+  color: darkgrey;
+  text-decoration: none;
 }
 
-.reg_link:hover, .log_link:hover {
-    text-decoration: underline;
+.reg_link:hover,
+.log_link:hover {
+  text-decoration: underline;
 }
 
 .slash {
-    font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
-    font-weight: 600;
-    font-size: 15px;
-    color:darkgrey;
-    text-decoration: none;
-    align-items:baseline;
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600;
+  font-size: 15px;
+  color: darkgrey;
+  text-decoration: none;
+  align-items: baseline;
 }
