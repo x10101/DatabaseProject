@@ -1,0 +1,49 @@
+* {
+  /* 網站會預設css樣式，如果不想要可以先重置 */
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* 防止不必要的滾動 */
+}
+
+/* 主內容容器 - 使用 Flexbox 分左右 */
+main.container {
+  display: flex; /* 設置為水平排列 */
+  max-width: 1200px;
+  margin: 20px auto; /* 水平居中，與頂部保持距離 */
+  gap: 20px; /* 左右區域間距 */
+  padding: 20px;
+}
+
+/* 左邊用戶資料區域 */
+.user-section {
+  flex: 1; /* 左側區域佔據一份空間 */
+  max-width: 300px; /* 限制最大寬度 */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center; /* 讓用戶資料居中 */
+}
+
+.profile-pic img {
+  width: 120px; /* 調整圖片大小 */
+  height: 120px; /* 保持寬高一致，確保是正方形 */
+  border-radius: 50%; /* 圓形效果 */
+  object-fit: cover; /* 確保圖片比例不變並填滿容器 */
+  display: block;
+  margin: 0 auto; /* 圖片居中 */
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 2px 0;
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600; /* 設置字重為 Semi-Bold */
+  font-size: 15px; /* 可以調整字體大小 */
+  background-color: whitesmoke;
+}
