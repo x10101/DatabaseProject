@@ -31,6 +31,10 @@
   border-radius: 5px;
 }
 
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
 .noaccount-message {
   font-size: 15px;
   margin-top: 20px; /* 登入訊息跟按鈕之間的距離*/

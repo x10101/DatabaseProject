@@ -12,27 +12,132 @@ main.container {
   margin: 20px auto; /* 水平居中，與頂部保持距離 */
   gap: 20px; /* 左右區域間距 */
   padding: 20px;
+  align-items: flex-start; /* 左右框上對齊 */
 }
 
 /* 左邊用戶資料區域 */
 .user-section {
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
   flex: 1; /* 左側區域佔據一份空間 */
   max-width: 300px; /* 限制最大寬度 */
+  height: 230px; /* 固定高度 */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center; /* 讓用戶資料居中 */
+  flex-shrink: 0; /* 防止縮小 */
+  overflow: hidden; /* 防止超出內容 */
+  position: relative; /* 設置相對定位，讓登出按鈕相對於此區域定位 */
 }
 
 .profile-pic img {
-  width: 120px; /* 調整圖片大小 */
-  height: 120px; /* 保持寬高一致，確保是正方形 */
+  padding-top: 15px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%; /* 圓形效果 */
   object-fit: cover; /* 確保圖片比例不變並填滿容器 */
   display: block;
   margin: 0 auto; /* 圖片居中 */
+}
+
+/* 用戶 ID 樣式 */
+.user-id {
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 18px; /* 與 name 增加距離 */
+}
+
+/* 用戶名樣式 */
+.user-name {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* 登出按鈕 */
+.logout-btn {
+  position: absolute; /* 絕對定位 */
+  left: 22%; /* 水平居中 */
+  bottom: 100px; /* 距離底部10px */
+  transform: translateX(-50%); /* 完全居中 */
+  padding: 10px 20px; /* 調整按鈕大小 */
+  font-size: 16px;
+  font-family: "Noto Serif TC", serif;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* 滑鼠懸停時的效果 */
+.logout-btn:hover {
+  background-color: #0056b3;
+}
+/* 右邊訂單記錄區域 */
+.order-record {
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  flex: 2; /* 右側區域佔據兩份空間，顯得更寬 */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: auto; /* 內容溢出時可滾動 */
+}
+
+.order-title {
+  margin: 0; /* 去掉標題的額外間距 */
+  font-size: 30px; /* 標題字體大小 */
+  font-weight: bold;
+  text-align: left; /* 左對齊標題 */
+  position: relative; /* 相對定位以便對齊表格 */
+}
+
+.order-tabs table {
+  width: 100%;
+  max-width: 700px;
+  margin: 15px auto;
+  background-color: rgb(0, 153, 255);
+  border-collapse: collapse;
+  table-layout: fixed; /* 確保表格每一格寬度均等 */
+}
+
+.order-tabs td {
+  border-style: solid;
+  padding: 5px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  width: 33.33%;
+  background-color: rgb(0, 153, 255);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.order-tabs td:hover {
+  background-color: rgb(0, 100, 180);
+}
+.order-tabs td.active {
+  background-color: rgb(0, 100, 180); /* 按下的選項顯示不同顏色 */
+}
+
+/* 右邊內部內容樣式 */
+.order-content {
+  margin-top: 10px;
+}
+
+.order-group {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 footer {

@@ -17,6 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap"
       rel="stylesheet"
     />
+
+    <script src="membership.js"></script>
   </head>
 
   <body>
@@ -41,10 +43,44 @@
           <div class="profile-pic">
             <img src="images/girl.png" alt="Profile Picture" />
           </div>
-          <h2>user_id</h2>
-          <h3>name</h3>
+          <h2 class="user-id">user_id</h2>
+          <h3 class="user-name">name</h3>
         </div>
       </section>
+
+      <a href="loginfirst.html" class="logout-btn">登出</a>
+      <!-- <button class="logout-btn">登出</button> -->
+
+      <!-- 右側訂單記錄 -->
+      <section class="order-record">
+        <h2 class="order-title">訂單紀錄</h2>
+        <div class="order-tabs">
+          <table>
+            <tr>
+              <td align="center" onclick="showOrders('all')">All</td>
+              <td align="center" onclick="showOrders('buy')">Buy</td>
+              <td align="center" onclick="showOrders('sell')">Sell</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- 訂單內容區 -->
+        <div class="order-content">
+            <div class="order-group" id="all-orders">
+            <p>訂單 1: All - 商品 A</p>
+            <p>訂單 2: All - 商品 B</p>
+            <p>訂單 3: All - 商品 C</p>
+            </div>
+            <div class="order-group" id="buy-orders" style="display: none;">
+            <p>訂單 4: Buy - 商品 D</p>
+            <p>訂單 5: Buy - 商品 E</p>
+            </div>
+            <div class="order-group" id="sell-orders" style="display: none;">
+            <p>訂單 6: Sell - 商品 F</p>
+            <p>訂單 7: Sell - 商品 G</p>
+            </div>
+        </div>
+
     </main>
 
     <footer>
