@@ -36,7 +36,7 @@ h1 {
   top: 0;
   line-height: 80px;
 
-  background-image: url(images/shutterWave_logo.png); /* 加入圖片 */
+  background-image: url(../images/shutterWave_logo.png); /* 加入圖片 */
   background-repeat: no-repeat; /* 只顯示一張 */
   background-position: center; /* 移到中間 */
   width: 400px;
