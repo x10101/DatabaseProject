@@ -20,7 +20,7 @@ main.container {
   font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
   flex: 1; /* 左側區域佔據一份空間 */
   max-width: 300px; /* 限制最大寬度 */
-  height: 230px; /* 固定高度 */
+  height: 330px; /* 固定高度 */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -29,9 +29,12 @@ main.container {
   text-align: center; /* 讓用戶資料居中 */
   flex-shrink: 0; /* 防止縮小 */
   overflow: hidden; /* 防止超出內容 */
-  position: relative; /* 設置相對定位，讓登出按鈕相對於此區域定位 */
+  text-align: center; /* 確保內容居中 */
 }
 
+.user-info {
+  height: 330px; /* 固定高度 */
+}
 .profile-pic img {
   padding-top: 15px;
   width: 120px;
@@ -53,15 +56,12 @@ main.container {
 .user-name {
   font-size: 20px;
   font-weight: normal;
+  margin-bottom: 80px; /* 為 name 下方添加間距 */
 }
 
 /* 登出按鈕 */
 .logout-btn {
-  position: absolute; /* 絕對定位 */
-  left: 22%; /* 水平居中 */
-  bottom: 100px; /* 距離底部10px */
-  transform: translateX(-50%); /* 完全居中 */
-  padding: 10px 20px; /* 調整按鈕大小 */
+  padding: 10px 15px;
   font-size: 16px;
   font-family: "Noto Serif TC", serif;
   font-weight: bold;
@@ -71,8 +71,6 @@ main.container {
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-  display: inline-block;
   text-decoration: none;
 }
 
