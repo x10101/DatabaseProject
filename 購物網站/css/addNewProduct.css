@@ -2,7 +2,6 @@
   /* 網站會預設css樣式，如果不想要可以先重置 */
   padding: 0;
   margin: 0;
-  overflow: hidden; /* 防止不必要的滾動 */
 }
 
 /* 基本容器 */

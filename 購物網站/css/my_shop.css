@@ -2,7 +2,6 @@
   /* 網站會預設css樣式，如果不想要可以先重置 */
   padding: 0;
   margin: 0;
-  overflow: hidden; /* 防止不必要的滾動 */
 }
 
 /* 按鈕通用樣式 */
@@ -44,7 +43,7 @@ button {
 }
 
 .edit-btn:hover {
-  background-color: cornsilk;
+  background-color: cornflowerblue;
 }
 
 /* 下架按鈕 */
@@ -67,7 +66,7 @@ button {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 20px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0 auto; /* 置中 */
   position: relative;

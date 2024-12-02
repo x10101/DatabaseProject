@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <input type="number" class="product-quantity-input no-border" id="product-quantity-${product.id}" value="${product.quantity}" min="1" readonly>
                                 <button class="btn-toggle" onclick="toggleProduct(${product.id})">下架</button>
                                 <button class="edit-btn" onclick="toggleEditMode(${product.id}, this)">
-                                    <span class="edit-icon">✏️</span> 編輯
+                                    <span class="edit-icon"></span> 編輯
                                 </button>
                             </div>
                             <textarea class="product-description no-border" id="product-description-${product.id}" readonly>${product.description}</textarea>
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             quantityInput.classList.add('no-border');
 
             // 更新按鈕文字
-            button.innerHTML = `<span class="edit-icon">✏️</span> 編輯`;
+            button.innerHTML = `<span class="edit-icon"></span> 編輯`;
         } else {
             // 啟用編輯模式
             nameField.removeAttribute('readonly');
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             quantityInput.classList.remove('no-border');
 
             // 更新按鈕文字
-            button.innerHTML = `✔️ 儲存變更`;
+            button.innerHTML = `儲存變更`;
         }
     };
 
