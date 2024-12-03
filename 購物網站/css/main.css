@@ -83,3 +83,19 @@ footer {
   padding: 2px 0;
   margin-top: auto; /* 将页脚推到页面底部 */
 }
+
+@media screen and (max-width: 500px) {
+  header h1 {
+    visibility: hidden !important;
+    
+  }
+
+  header ul {
+    justify-content: space-around; /* 功能列項目平分空間 */
+    right: 0; /* 調整位置使其居中 */
+  }
+
+  header li {
+    margin-left: 0; /* 縮小按鈕間距 */
+  }
+}
