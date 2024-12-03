@@ -25,6 +25,7 @@
       rel="stylesheet"
     />
     <script src="js/home.js"></script>
+    <script src="js/ad.js"></script>
   </head>
 
   <body>
@@ -72,6 +73,45 @@
         <h3>搜尋結果</h3>
         <div class="results"></div>
       </section>
+
+      <!--右邊廣告-->
+      <div class="ad-container">
+        <img
+          src="images/ad1.png"
+          alt="Advertisement 1"
+          class="ad-image"
+          onclick="showFullscreen(this)"
+        />
+        <img
+          src="images/ad5.png"
+          alt="Advertisement 5"
+          class="ad-image"
+          onclick="showFullscreen(this)"
+        />
+        <img
+          src="images/ad4.png"
+          alt="Advertisement 4"
+          class="ad-image"
+          onclick="showFullscreen(this)"
+        />
+        <img
+          src="images/ad2.png"
+          alt="Advertisement 2"
+          class="ad-image"
+          onclick="showFullscreen(this)"
+        />
+        <img
+          src="images/ad3.png"
+          alt="Advertisement 3"
+          class="ad-image"
+          onclick="showFullscreen(this)"
+        />
+      </div>
+
+      <!-- 全屏顯示區域 -->
+      <div id="fullscreen" class="fullscreen" onclick="closeFullscreen()">
+        <img id="fullscreen-img" src="" alt="Fullscreen Image" />
+      </div>
 
       <!-- 產品 -->
       <div class="brand">Canon</div>

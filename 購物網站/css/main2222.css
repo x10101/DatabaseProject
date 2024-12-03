@@ -1,0 +1,102 @@
+/* 重設預設的 CSS 樣式 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* 全局布局設定 */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* header 設置 */
+header {
+  background-color: whitesmoke;
+  height: 80px; /* 設定 header 的高度 */
+  width: 100%; /* 讓 header 撐滿整個寬度 */
+  top: 0;
+  position: fixed; /* 固定在頁面頂部 */
+  z-index: 1000;
+  display: flex; /* 使用 Flexbox 排列內容 */
+  justify-content: space-between; /* 左右對齊 */
+  align-items: center; /* 垂直置中 */
+  padding: 10px 30px 10px 30px; /* 給 header 內部內容一些左右邊距 */
+}
+
+/* ShutterWave logo (h1) */
+h1 {
+  background-image: url(../images/shutterWave_logo.png); /* 加入圖片 */
+  background-repeat: no-repeat; /* 只顯示一次 */
+  background-position: center; /* 圖片居中 */
+  width: 320px; /* 設定 logo 的寬度 */
+  background-size: 110%; /* 讓 logo 自適應容器大小 */
+  text-indent: -9999px; /* 隱藏文字 */
+  left: 30px;
+  top: 0;
+  line-height: 80px;
+}
+
+/* 導航列 (ul) */
+nav ul {
+  display: flex; /* 使用 flex 排列 */
+  list-style: none; /* 去除列表點 */
+  top: 0;
+  line-height: 90px;
+  font-weight: 700; /* 設置字重為 Bold */
+  font-size: 4vw; /* 使用 vw 作為字體大小的單位，隨視窗大小變化 */
+}
+
+nav li {
+  display: inline;
+  margin-left: 8vw; /* 根據需要調整這個值 */
+}
+
+nav a {
+  color: black;
+  text-decoration: none; /* 文字裝飾設無，就不會有底線 */
+  font-size: clamp(16px, 2.5vw, 25px); /* 最小16px，最大40px，中間自適應視窗 */
+}
+
+nav a:hover {
+  color: cornflowerblue;
+}
+
+/* 頁尾設置 */
+footer {
+  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  font-weight: 600; /* 設置字重為 Semi-Bold */
+  font-size: 15px; /* 調整字體大小 */
+  text-align: center;
+  background-color: whitesmoke;
+  padding: 2px 0;
+  margin-top: auto; /* 將頁腳推到頁面底部 */
+}
+
+/* 響應式設計 - 小螢幕 */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column; /* 在小螢幕上，header 內的內容上下排列 */
+    height: 130px; /* 讓高度自適應內容 */
+    padding: 10px 0; /* 調整上下邊距 */
+  }
+
+  h1 {
+    width: 85%; /* 讓 logo 寬度自適應 */
+    height: auto; /* 根據內容自適應高度 */
+  }
+
+  nav ul {
+    flex-direction: row; /* 導航列項目左右排列 */
+    align-items: center; /* 水平居中 */
+  }
+
+  nav li {
+    margin-top: 0px; /* 去掉額外間距 */
+  }
+
+  nav a {
+    font-size: 4vw; /* 字體變大，適應小螢幕 */
+  }
+}
