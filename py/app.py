@@ -89,24 +89,33 @@ def login():
         cursor = db_conn.cursor()       # 建立游標
         print(cursor)
         cursor.execute(                 # 查詢用戶資料
-            "SELECT password FROM member WHERE email = ?",
+            "SELECT memberName, password FROM member WHERE email = ?",
             (email,)
         )
-        hashed_password = cursor.fetchone()        # 取得第一筆查詢結果
+        member_name, hashed_password = cursor.fetchone()        # 取得第一筆查詢結果
+        print("member")
+        print(member_name)
         print("password:")
         print(hashed_password)
         cursor.close()
         db_conn.close()
 
         if hashed_password and check_password_hash(hashed_password[0], password):  # 驗證密碼是否正確
-            session['user'] = email  # 設置 session，表示用戶已登入
+            session['user'] = member_name  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
+@app.route('/dashboard')
+def dashboard():
+    # 確認使用者是否已登入
+    if 'user' not in session:
+        return redirect('/login.html')  # 未登入則重定向至登入頁面
 
+    user = session['user']
+    return render_template('dashboard.html', user=user)
 
 
 
