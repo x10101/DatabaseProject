@@ -77,10 +77,10 @@ def register():
 @app.route('/loginWeb', methods=['POST'])
 def login():
     data = request.json
-    username = data.get('username')
+    email = data.get('email')
     password = data.get('password')
 
-    if not username or not password:
+    if not email or not password:
         return jsonify({"error": "請填寫完整登入資訊"}), 400
 
     try:
@@ -88,15 +88,15 @@ def login():
         db_conn = conn()                # 建立資料庫連接
         cursor = db_conn.cursor()       # 建立游標
         cursor.execute(                 # 查詢用戶資料
-            "SELECT password FROM member WHERE memberName = ?",
-            (username,)
+            "SELECT password FROM member WHERE email = ?",
+            (email,)
         )
-        user = cursor.fetchone()
+        email = cursor.fetchone()
         cursor.close()
         db_conn.close()
 
-        if user and check_password_hash(user[0], password):  # 驗證密碼是否正確
-            session['username'] = username  # 設置 session，表示用戶已登入
+        if email and check_password_hash(email[0], password):  # 驗證密碼是否正確
+            session['email'] = email  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
