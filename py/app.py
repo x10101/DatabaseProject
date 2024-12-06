@@ -13,10 +13,10 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import request, flash, redirect, url_for
 import pyodbc
-#from flask_cors import CORS
+from flask_cors import CORS
 
 app = Flask(__name__)               # 初始化 flask 應用
-#CORS(app)                           # 允許跨域請求
+CORS(app)                           # 允許跨域請求
 app.secret_key = 'your_secret_key'  # 設定 session 加密密鑰
 
 # 資料庫連接
