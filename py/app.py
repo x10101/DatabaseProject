@@ -57,7 +57,6 @@ def register():
 
     try:
         # 資料庫操作
-        conn()
         db_conn = conn()                # 獲取資料庫連接
         cursor = db_conn.cursor()       # 使用游標執行 SQL 查詢
         cursor.execute(                 # 執行 SQL 語句，將用戶資料插入資料庫中的 users 表
