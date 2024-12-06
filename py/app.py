@@ -74,3 +74,9 @@ def register():
     # 伺服器錯誤處理
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
+
+'''
+# test
+for rule in app.url_map.iter_rules():
+    print(f"Route: {rule} -> {rule.endpoint}")
+'''
