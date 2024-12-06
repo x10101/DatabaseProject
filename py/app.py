@@ -58,7 +58,7 @@ def register():
         db_conn = conn()                # 獲取資料庫連接
         cursor = db_conn.cursor()       # 使用游標執行 SQL 查詢
         cursor.execute(                 # 執行 SQL 語句，將用戶資料插入資料庫中的 users 表
-            "INSERT INTO member (username, email, password) VALUES (?, ?, ?)",
+            "INSERT INTO member (membername, email, password) VALUES (?, ?, ?)",
             (username, email, hashed_password)
         )
         db_conn.commit()                # 提交更改，將資料儲存到資料庫
