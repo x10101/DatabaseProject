@@ -1,5 +1,8 @@
 # 資料庫專題
- 113-1 資料庫專題
+113-1 資料庫專題
+
+## 參考資料
+- [DAY29 - 使用Python連接資料庫並更新及讀取資料表]https://ithelp.ithome.com.tw/m/articles/10308541
 
 ## github push & pull 教學
 ### 在電腦開啟 Repositories

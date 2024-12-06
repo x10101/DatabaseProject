@@ -90,9 +90,9 @@ def login():
         print(cursor)
         cursor.execute(                 # 查詢用戶資料
             "SELECT password FROM member WHERE email = ?",
-            (email)
+            (email,)
         )
-        mail = cursor.fetchone()
+        mail = cursor.fetchone()        # 取得第一筆查詢結果
         print(mail)
         cursor.close()
         db_conn.close()
