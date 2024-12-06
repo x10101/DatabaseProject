@@ -6,31 +6,32 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const password2 = document.getElementById('password2').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
 
-    if (password == password2) {
-        try {
-            // 發送請求
-            const response = await fetch('/register', {                 // 使用 fetch API 發送 HTTP POST 請求到後端 /register 路徑
-                method: 'POST',                                         // 指定請求方法為 POST
-                headers: { 'Content-Type': 'application/json' },        // 告訴伺服器這是 JSON 格式的資料
-                body: JSON.stringify({ username, email, password }),    // 將 username、email 和 password 包裝成 JSON 字符串傳送
-            });
+    // 確認密碼是否一致
+    if (password !== confirmPassword) {
+        alert('密碼與確認密碼不一致，請重新輸入');
+        return; // 停止執行
+    }
 
-            const result = await response.json();   // 使用 response.json() 解析後端回應的 JSON 資料
-            if (response.ok) {                      // 成功處理
-                alert(result.message);
-                window.location.href = '/login';    // 註冊成功後跳轉到登入頁面
-            } else {                                // 錯誤處理
-                alert(result.error);
-            }
-        }
-        // 錯誤捕獲 
-        catch (error) {
-            alert('伺服器錯誤，請稍後再試');
+    try {
+        // 發送請求
+        const response = await fetch('/register', {                 // 使用 fetch API 發送 HTTP POST 請求到後端 /register 路徑
+            method: 'POST',                                         // 指定請求方法為 POST
+            headers: { 'Content-Type': 'application/json' },        // 告訴伺服器這是 JSON 格式的資料
+            body: JSON.stringify({ username, email, password }),    // 將 username、email 和 password 包裝成 JSON 字符串傳送
+        });
+
+        const result = await response.json();   // 使用 response.json() 解析後端回應的 JSON 資料
+        if (response.ok) {                      // 成功處理
+            alert(result.message);
+            window.location.href = '/login';    // 註冊成功後跳轉到登入頁面
+        } else {                                // 錯誤處理
+            alert(result.error);
         }
     }
-    else {
-        alert("密碼錯誤");
+    // 錯誤捕獲 
+    catch (error) {
+        alert('伺服器錯誤，請稍後再試');
     }
 });
