@@ -22,7 +22,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
             body: JSON.stringify({ username, email, password }),    // 將 username、email 和 password 包裝成 JSON 字符串傳送
         });
         const result = await response.json();   // 使用 response.json() 解析後端回應的 JSON 資料
-        alert(response);
+        //alert(response);
         if (response.ok) {                      // 成功處理
             alert(result.message);
             window.location.href = '/login';    // 註冊成功後跳轉到登入頁面

@@ -39,7 +39,7 @@ def conn():
 
 # 啟動 flask 應用
 if __name__ == '__main__':      # 確認程式是被直接執行，而非作為模組被導入
-    app.run(debug=True)         # 啟動 Flask 開發伺服器 (開啟除錯模式)
+    app.run(debug=True, host='0.0.0.0', port=5000)         # 啟動 Flask 開發伺服器 (開啟除錯模式)
 
 
 # 使用者註冊
