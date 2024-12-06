@@ -43,12 +43,10 @@ if __name__ == '__main__':      # 確認程式是被直接執行，而非作為�
 
 
 # 使用者註冊
-@app.route('/register', methods=['POST'])   # 定義了一個名為 /register 的 API 路由，用於處理註冊請求
+@app.route('http://127.0.0.1:5000/register', methods=['POST'])   # 定義了一個名為 /register 的 API 路由，用於處理註冊請求
 def register():
-    print("Register route triggered")
     # 從請求中獲取資料
     data = request.json                 # 接收 JSON 格式的資料
-    print(f"Received data: {data}")
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
