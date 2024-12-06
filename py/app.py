@@ -87,6 +87,7 @@ def login():
         # 資料庫操作
         db_conn = conn()                # 建立資料庫連接
         cursor = db_conn.cursor()       # 建立游標
+        print(cursor)
         cursor.execute(                 # 查詢用戶資料
             "SELECT password FROM member WHERE email = ?",
             (email)
