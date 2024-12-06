@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
         if (response.ok) {
             alert(result.message); // 登入成功提示
-            window.location.href = '/dashboard'; // 導向登入後的主頁
+            window.location.href = '/membership.html'; // 導向登入後的主頁
         } else {
             alert(result.error); // 顯示錯誤提示
         }
