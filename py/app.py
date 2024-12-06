@@ -92,6 +92,7 @@ def login():
             (email)
         )
         email = cursor.fetchone()
+        print(email)
         cursor.close()
         db_conn.close()
 
