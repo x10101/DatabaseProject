@@ -99,12 +99,14 @@ def login():
         db_conn.close()
 
         if hashed_password and check_password_hash(hashed_password[0], password):  # 驗證密碼是否正確
-            session['email'] = email  # 設置 session，表示用戶已登入
+            session['user'] = email  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
+
+
 
 
 
