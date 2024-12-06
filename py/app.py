@@ -92,13 +92,14 @@ def login():
             "SELECT password FROM member WHERE email = ?",
             (email,)
         )
-        mail = cursor.fetchall()        # 取得第一筆查詢結果
-        print(mail)
+        hashed_password = cursor.fetchone()        # 取得第一筆查詢結果
+        print("password:")
+        print(hashed_password)
         cursor.close()
         db_conn.close()
 
-        if mail and check_password_hash(mail[0], password):  # 驗證密碼是否正確
-            session['email'] = mail  # 設置 session，表示用戶已登入
+        if hashed_password and check_password_hash(hashed_password[0], password):  # 驗證密碼是否正確
+            session['email'] = email  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
