@@ -23,6 +23,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
         });
 
         const result = await response.json();   // 使用 response.json() 解析後端回應的 JSON 資料
+        alert(response);
         if (response.ok) {                      // 成功處理
             alert(result.message);
             window.location.href = '/login';    // 註冊成功後跳轉到登入頁面
