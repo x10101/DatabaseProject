@@ -34,10 +34,6 @@ def conn():
         print(f"連線失敗: {e}")
         return None
 
-# 啟動 flask 應用
-if __name__ == '__main__':      # 確認程式是被直接執行，而非作為模組被導入
-    app.run(debug=True, host='0.0.0.0', port=5000)         # 啟動 Flask 開發伺服器 (開啟除錯模式)
-
 
 # 使用者註冊
 @app.route('/register', methods=['POST'])   # 定義了一個名為 /register 的 API 路由，用於處理註冊請求
@@ -76,6 +72,10 @@ def register():
     # 伺服器錯誤處理
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
+
+# 啟動 flask 應用
+if __name__ == '__main__':      # 確認程式是被直接執行，而非作為模組被導入
+    app.run(debug=True, host='0.0.0.0', port=5000)         # 啟動 Flask 開發伺服器 (開啟除錯模式)
 
 '''
 # test
