@@ -89,7 +89,7 @@ def login():
         cursor = db_conn.cursor()       # 建立游標
         cursor.execute(                 # 查詢用戶資料
             "SELECT password FROM member WHERE email = ?",
-            (email,)
+            (email)
         )
         email = cursor.fetchone()
         cursor.close()
