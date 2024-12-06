@@ -100,7 +100,7 @@ def login():
         cursor.close()
         db_conn.close()
 
-        if hashed_password and check_password_hash(hashed_password[0], password):  # 驗證密碼是否正確
+        if hashed_password and check_password_hash(hashed_password, password):  # 驗證密碼是否正確
             session['user'] = member_name  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
