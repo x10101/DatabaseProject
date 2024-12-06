@@ -92,7 +92,7 @@ def login():
             "SELECT password FROM member WHERE email = ?",
             (email,)
         )
-        mail = cursor.fetchone()        # 取得第一筆查詢結果
+        mail = cursor.fetchall()        # 取得第一筆查詢結果
         print(mail)
         cursor.close()
         db_conn.close()
