@@ -73,6 +73,45 @@ def register():
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
+# 使用者登入
+@app.route('/loginWeb', methods=['POST'])
+def login():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+
+    if not username or not password:
+        return jsonify({"error": "請填寫完整登入資訊"}), 400
+
+    try:
+        # 資料庫操作
+        db_conn = conn()                # 建立資料庫連接
+        cursor = db_conn.cursor()       # 建立游標
+        cursor.execute(                 # 查詢用戶資料
+            "SELECT password FROM member WHERE memberName = ?",
+            (username,)
+        )
+        user = cursor.fetchone()
+        cursor.close()
+        db_conn.close()
+
+        if user and check_password_hash(user[0], password):  # 驗證密碼是否正確
+            session['username'] = username  # 設置 session，表示用戶已登入
+            return jsonify({"message": "登入成功"}), 200
+        else:
+            return jsonify({"error": "用戶名或密碼錯誤"}), 401
+    except Exception as e:
+        return jsonify({"error": f"伺服器錯誤: {e}"}), 500
+
+
+
+
+
+
+
+
+
+
 # 啟動 flask 應用
 if __name__ == '__main__':      # 確認程式是被直接執行，而非作為模組被導入
     app.run(debug=True, host='0.0.0.0', port=5000)         # 啟動 Flask 開發伺服器 (開啟除錯模式)
