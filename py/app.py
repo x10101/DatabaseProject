@@ -108,6 +108,7 @@ def login():
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
+# 顯示登入狀態
 @app.route('/dashboard')
 def dashboard():
     # 確認使用者是否已登入
@@ -115,7 +116,7 @@ def dashboard():
         return redirect('/login.html')  # 未登入則重定向至登入頁面
 
     user = session['user']
-    return render_template('dashboard.html', user=user)
+    return render_template('membership.html', user=user)
 
 
 
