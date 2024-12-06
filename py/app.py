@@ -13,20 +13,20 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import request, flash, redirect, url_for
 import pyodbc
-from flask_cors import CORS
+#from flask_cors import CORS
 
 app = Flask(__name__)               # 初始化 flask 應用
-CORS(app)                           # 允許跨域請求
+#CORS(app)                           # 允許跨域請求
 app.secret_key = 'your_secret_key'  # 設定 session 加密密鑰
 
 # 資料庫連接
 def conn():
     try:
         connect = pyodbc.connect(           # 建立與 SQL Server 的連線
-            'DRIVER = {SQL Server};'        # 指定使用的 SQL Server ODBC 驅動
-            'SERVER = WIN-SQL5CNC3OSL;'     # 資料庫伺服器的名稱或 IP 地址
-            'DATABASE = DB;'                # 要連接的資料庫名稱
-            'Trusted_Connection = yes;'     # 使用 Windows 驗證模式進行連線
+            'DRIVER={SQL Server};'        # 指定使用的 SQL Server ODBC 驅動
+            'SERVER=WIN-SQL5CNC3OSL;'     # 資料庫伺服器的名稱或 IP 地址
+            'DATABASE=DB;'                # 要連接的資料庫名稱
+            'Trusted_Connection=yes;'     # 使用 Windows 驗證模式進行連線
         )
         print("連線成功")
         return connect
@@ -36,7 +36,7 @@ def conn():
 
 # 啟動 flask 應用
 if __name__ == '__main__':      # 確認程式是被直接執行，而非作為模組被導入
-    app.run(debug=True, host='0.0.0.0', port=5000)         # 啟動 Flask 開發伺服器 (開啟除錯模式)
+    app.run(debug=True)         # 啟動 Flask 開發伺服器 (開啟除錯模式) , host='0.0.0.0', port=5000
 
 
 # 使用者註冊
