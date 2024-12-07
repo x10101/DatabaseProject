@@ -93,10 +93,12 @@ def login():
             (email,)
         )
         member_name, hashed_password = cursor.fetchone()        # 取得第一筆查詢結果
+        '''
         print("member")
         print(member_name)
         print("password:")
         print(hashed_password)
+        '''
         cursor.close()
         db_conn.close()
 
@@ -108,15 +110,45 @@ def login():
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
-# 顯示登入狀態
-@app.route('/dashboard')
-def dashboard():
-    # 確認使用者是否已登入
-    if 'user' not in session:
-        return redirect('/login.html')  # 未登入則重定向至登入頁面
+# 使用者登出
+@app.route('/logoutWeb')
+def logout():
+    session.pop('user', None)  # 從 session 中移除 user_id
+    return redirect(url_for('login_page'))
 
-    user = session['user']
-    return render_template('membership.html', user=user)
+# 上架商品
+@app.route("/add_product", methods=["POST"])
+def add_product():
+    if "user" not in session:  # 確保用戶已登入
+        return jsonify({"error": "未登入，請先登入"}), 401
+
+    # 獲取請求資料
+    data = request.json
+    product_name = data.get("product_name")
+    description = data.get("description")
+    price = data.get("price")
+
+    # 資料驗證
+    if not product_name or not price:
+        return jsonify({"error": "請填寫完整的商品資料"}), 400
+
+    try:
+        # 寫入資料庫
+        db_conn = conn()
+        cursor = db_conn.cursor()
+        cursor.execute(
+            "INSERT INTO products (user_id, product_name, description, price) VALUES (?, ?, ?, ?)",
+            (session["user_id"], product_name, description, price)
+        )
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "商品上架成功"}), 201
+
+    except Exception as e:
+        return jsonify({"error": f"伺服器錯誤: {e}"}), 500
+
 
 
 
