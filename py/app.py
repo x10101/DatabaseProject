@@ -120,7 +120,6 @@ def logout():
 # 查詢使用者資訊
 @app.route('/user_info', methods=['GET'])
 def user_info():
-    print("test user_info")
     if 'user_id' not in session:  # 未登入，跳轉到登入頁面
         return jsonify({"redirect": "/login.html"}), 401
     
