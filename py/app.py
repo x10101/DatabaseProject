@@ -171,6 +171,39 @@ def get_products():
         } for row in products])
     except Exception as e:
         return jsonify({"error": "Internal Server Error", "message": str(e)}), 500
+    
+# 加入購物車 API
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    # 檢查是否登入
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    data = request.json
+    product_id = data.get('product_id')
+    quantity = data.get('quantity', 1)
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+        # 檢查商品是否存在
+        cursor.execute("SELECT COUNT(*) FROM product WHERE product_ID = ? AND released = 1", (product_id,))
+        if cursor.fetchone()[0] == 0:
+            return jsonify({"error": "商品不存在或未上架"}), 404
+
+        # 將商品加入購物車
+        cursor.execute(
+            "INSERT INTO cart (customer_ID, product_ID, amount) VALUES (?, ?, ?)",
+            (user_id, product_id, quantity)
+        )
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "成功加入購物車"})
+    except Exception as e:
+        return jsonify({"error": "內部伺服器錯誤", "message": str(e)}), 500
 
 
 

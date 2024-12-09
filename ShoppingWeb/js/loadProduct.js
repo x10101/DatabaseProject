@@ -15,7 +15,8 @@ async function loadProducts() {
 
                     <p class="product_name">
                         <span class="name"><a href="#">${product.product_name}</a></span>
-                        <span class="price">${product.price}</span>
+                        <span class="price">
+                        $ ${product.price}</span>
                     </p>
 
                     <!-- 加入購物車區域 -->
