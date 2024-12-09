@@ -147,38 +147,31 @@ def user_info():
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
-# 上架商品
-@app.route("/add_product", methods=["POST"])
-def add_product():
-    if "user" not in session:  # 確保用戶已登入
-        return jsonify({"error": "未登入，請先登入"}), 401
-
-    # 獲取請求資料
-    data = request.json
-    product_name = data.get("product_name")
-    description = data.get("description")
-    price = data.get("price")
-
-    # 資料驗證
-    if not product_name or not price:
-        return jsonify({"error": "請填寫完整的商品資料"}), 400
-
+# 取得所有商品
+@app.route('/products', methods=['GET'])
+def get_products():
+    """取得所有上架商品"""
     try:
-        # 寫入資料庫
         db_conn = conn()
         cursor = db_conn.cursor()
-        cursor.execute(
-            "INSERT INTO products (user_id, product_name, description, price) VALUES (?, ?, ?, ?)",
-            (session["user_id"], product_name, description, price)
-        )
-        db_conn.commit()
+        # 查詢 released = 1 的商品
+        cursor.execute("SELECT product_ID, name, price, amount, information FROM product WHERE released = 1")
+        products = cursor.fetchall()
+        print(products)
         cursor.close()
         db_conn.close()
-
-        return jsonify({"message": "商品上架成功"}), 201
-
+        
+        # 回傳 JSON 格式資料
+        return jsonify([{
+            "product_id": row[0],
+            "product_name": row[1],
+            "price": float(row[2]),
+            "stock": row[3],
+            "description": row[4]
+        } for row in products])
     except Exception as e:
-        return jsonify({"error": f"伺服器錯誤: {e}"}), 500
+        return jsonify({"error": "Internal Server Error", "message": str(e)}), 500
+
 
 
 
