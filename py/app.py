@@ -89,10 +89,10 @@ def login():
         cursor = db_conn.cursor()       # 建立游標
         print(cursor)
         cursor.execute(                 # 查詢用戶資料
-            "SELECT memberName, password FROM member WHERE email = ?",
+            "SELECT member_ID, password FROM member WHERE email = ?",
             (email,)
         )
-        member_name, hashed_password = cursor.fetchone()        # 取得第一筆查詢結果
+        member_ID, hashed_password = cursor.fetchone()        # 取得第一筆查詢結果
         '''
         print("member")
         print(member_name)
@@ -103,7 +103,7 @@ def login():
         db_conn.close()
 
         if hashed_password and check_password_hash(hashed_password, password):  # 驗證密碼是否正確
-            session['user'] = member_name  # 設置 session，表示用戶已登入
+            session['user'] = member_ID  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
