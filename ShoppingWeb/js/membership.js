@@ -6,8 +6,8 @@ async function fetchUserInfo() {
       if (response.ok) {
           const user = await response.json();
           // 顯示使用者資訊
-          document.getElementById('membership_user_id').innerHTML = '${user.id}';
-          document.getElementById('membership_user_name').innerHTML = '${user.username}';
+          document.getElementById('membership_user_id').textContent = `${user.id}`;
+          document.getElementById('membership_user_name').textContent = `${user.username}`;
       } else if (response.status === 401) {
           // 未登入，跳轉至登入頁面
           const data = await response.json();

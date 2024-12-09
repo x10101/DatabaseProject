@@ -127,7 +127,9 @@ def user_info():
         # 查詢使用者資訊
         db_conn = conn()
         cursor = db_conn.cursor()
-        cursor.execute("SELECT member_ID, memberName, email FROM users WHERE id = ?", (session['user_id'],))
+        print("test")
+        print(session['user_id'])
+        cursor.execute("SELECT member_ID, memberName, email FROM member WHERE member_ID = ?", (session['user_id'],))
         user = cursor.fetchone()
         cursor.close()
         db_conn.close()
