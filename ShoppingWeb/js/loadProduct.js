@@ -1,3 +1,8 @@
+// 格式化價錢為 $10,000 形式
+function formatPrice(price) {
+    return parseInt(price).toLocaleString('en-US');
+}
+
 async function loadProducts() {
     try {
         const response = await fetch('/products', { method: 'GET' });
@@ -11,12 +16,12 @@ async function loadProducts() {
         products.forEach(product => {
             const item = `
                 <div class="product-item">
-                    <img src="images/R10 $ 39,900.png" alt="EOS R10" />
+                    <img src="images/${product.product_id}.png" alt="EOS R10" />
 
                     <p class="product_name">
                         <span class="name"><a href="#">${product.product_name}</a></span>
-                        <span class="price">
-                        $ ${product.price}</span>
+                        <span class="price">$
+                        ${formatPrice(product.price)}</span>
                     </p>
 
                     <!-- 加入購物車區域 -->
@@ -26,7 +31,7 @@ async function loadProducts() {
                         <input type="text" class="quantity" value="1" readonly />
                         <button class="btn-increase">+</button>
                         </div>
-                        <button class="add-to-cart" onclick="addToCart(${product.product_id})">加入購物車</button>
+                        <button class="add-to-cart" onclick="addToCart(${product.product_id});">加入購物車</button>
                     </div>
                 </div>
             `;

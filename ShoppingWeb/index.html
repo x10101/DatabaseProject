@@ -24,10 +24,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
-    <script src="js/loadProduct.js"></script>
     <script src="js/home.js"></script>
     <script src="js/ad.js"></script>
     <script src="js/addToCart.js"></script>
+    <script src="js/loadCart.js"></script>
+    <script src="js/loadProduct.js"></script>
   </head>
 
   <body>
@@ -60,12 +61,12 @@
       <!-- 搜尋 -->
       <section>
         <div class="search-container">
-          <input type="text" placeholder="輸入商品名稱查詢" />
+          <input type="text" id="searchInput" placeholder="輸入商品名稱查詢" />
           <button type="button" id="clear-search" style="display: none">
             &times;
           </button>
           <!-- 叉叉按鈕 -->
-          <button><i class="fas fa-search"></i></button>
+          <button id="search-button"><i class="fas fa-search"></i></button>
         </div>
       </section>
 
@@ -133,11 +134,13 @@
     </main>
 
     <div id="shopping-cart" class="cart-hidden">
-      <div class="cart-content">
+      <div id="cart-content">
         <p id="empty-cart-message">購物車目前沒有商品。</p>
+        <!--
         <ul class="cart-items">
-          <!-- 商品項目會通過 JavaScript 動態插入 -->
+          商品項目會通過 JavaScript 動態插入
         </ul>
+        -->
       </div>
       <div class="cart-total">
         <span>總金額：</span><span id="total-price">$ 0</span>

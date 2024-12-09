@@ -123,7 +123,7 @@ def logout():
 @app.route('/user_info', methods=['GET'])
 def user_info():
     if 'user_id' not in session:  # 未登入，跳轉到登入頁面
-        return jsonify({"redirect": "/login.html"}), 401
+        return jsonify({"redirect": "/loginfirst.html"}), 401
     
     try:
         # 查詢使用者資訊
@@ -152,12 +152,27 @@ def user_info():
 def get_products():
     """取得所有上架商品"""
     try:
+        # 接收關鍵字
+        keyword = request.args.get('keyword', '').strip()
+
         db_conn = conn()
         cursor = db_conn.cursor()
-        # 查詢 released = 1 的商品
-        cursor.execute("SELECT product_ID, name, price, amount, information FROM product WHERE released = 1")
+        # 如果有關鍵字，進行搜尋
+        if keyword:
+            cursor.execute("""
+                SELECT product_ID, name, price, amount, information 
+                FROM product 
+                WHERE released = 1 
+                AND (name LIKE ? OR information LIKE ?)
+            """, (f"%{keyword}%", f"%{keyword}%"))
+        else:  # 否則返回所有商品
+            cursor.execute("""
+                SELECT product_ID, name, price, amount, information 
+                FROM product 
+                WHERE released = 1
+            """)
         products = cursor.fetchall()
-        print(products)
+        #print(products)
         cursor.close()
         db_conn.close()
         
@@ -204,6 +219,38 @@ def add_to_cart():
         return jsonify({"message": "成功加入購物車"})
     except Exception as e:
         return jsonify({"error": "內部伺服器錯誤", "message": str(e)}), 500
+
+# 列印購物車
+@app.route('/show_cart', methods=['GET'])
+def get_cart():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+        # 查詢使用者購物車的商品資訊
+        cursor.execute("""
+            SELECT p.product_ID, p.name, p.price, c.amount
+            FROM cart c
+            JOIN product p ON c.product_ID = p.product_ID
+            WHERE c.customer_ID = ?
+        """, (user_id,))
+        cart_items = cursor.fetchall()
+        cursor.close()
+        db_conn.close()
+
+        # 將結果轉換為 JSON 格式
+        return jsonify([{
+            "product_id": item[0],
+            "product_name": item[1],
+            "price": float(item[2]),
+            "quantity": item[3]
+        } for item in cart_items])
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
 
 
 

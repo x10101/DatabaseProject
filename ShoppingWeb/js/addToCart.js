@@ -12,7 +12,7 @@ async function addToCart(productId) {
         if (response.status === 401) {
             // 使用者未登入，跳轉至登入頁面
             alert("請先登入再加入購物車");
-            window.location.href = '/login.html';
+            window.location.href = '/loginfirst.html';
         } else if (!response.ok) {
             // 其他錯誤
             const errorData = await response.json();
@@ -20,6 +20,7 @@ async function addToCart(productId) {
         } else {
             // 成功加入購物車
             const result = await response.json();
+            window.location.reload();
             alert(result.message);
         }
     } catch (error) {
