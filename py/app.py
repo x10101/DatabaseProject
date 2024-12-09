@@ -114,8 +114,10 @@ def login():
 # 使用者登出
 @app.route('/logoutWeb')
 def logout():
-    session.pop('user_id', None)  # 從 session 中移除 user_id
-    return redirect(url_for('login_page'))
+    session.clear()  # 清除伺服器端的 session 資料
+    response = redirect(url_for('login_page'))  # 跳轉到登入頁面
+    response.set_cookie('session', '', expires=0)  # 清除瀏覽器的 session cookie
+    return response
 
 # 查詢使用者資訊
 @app.route('/user_info', methods=['GET'])
