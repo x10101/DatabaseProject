@@ -106,6 +106,7 @@ def login():
             session['user_id'] = member_ID  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
+            print("test user_info2")
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
@@ -121,7 +122,7 @@ def logout():
 def user_info():
     print("test user_info")
     if 'user_id' not in session:  # 未登入，跳轉到登入頁面
-        return jsonify({"redirect": "/login"}), 401
+        return jsonify({"redirect": "/login.html"}), 401
     
     try:
         # 查詢使用者資訊

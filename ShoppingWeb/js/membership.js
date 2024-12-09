@@ -18,10 +18,10 @@ async function fetchUserInfo() {
           window.location.href = data.redirect;
       } else {
           // 處理其他錯誤
-          document.getElementById('status').textContent = "無法載入使用者資訊";
+          //document.getElementById('status').textContent = "無法載入使用者資訊";
       }
   } catch (error) {
-      document.getElementById('status').textContent = "伺服器錯誤，請稍後再試";
+      //document.getElementById('status').textContent = "伺服器錯誤，請稍後再試";
   }
 }
 
