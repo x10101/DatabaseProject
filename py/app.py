@@ -103,7 +103,7 @@ def login():
         db_conn.close()
 
         if hashed_password and check_password_hash(hashed_password, password):  # 驗證密碼是否正確
-            session['user'] = member_ID  # 設置 session，表示用戶已登入
+            session['user_id'] = member_ID  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
@@ -113,8 +113,34 @@ def login():
 # 使用者登出
 @app.route('/logoutWeb')
 def logout():
-    session.pop('user', None)  # 從 session 中移除 user_id
+    session.pop('user_id', None)  # 從 session 中移除 user_id
     return redirect(url_for('login_page'))
+
+# 查詢使用者資訊
+@app.route('/user_info', methods=['GET'])
+def user_info():
+    if 'user_id' not in session:  # 未登入，跳轉到登入頁面
+        return jsonify({"redirect": "/login"}), 401
+    
+    try:
+        # 查詢使用者資訊
+        db_conn = conn()
+        cursor = db_conn.cursor()
+        cursor.execute("SELECT id, username, email FROM users WHERE id = ?", (session['user_id'],))
+        user = cursor.fetchone()
+        cursor.close()
+        db_conn.close()
+
+        if user:
+            return jsonify({
+                "id": user.id,
+                "username": user.username,
+                "email": user.email
+            }), 200
+        else:
+            return jsonify({"error": "使用者不存在"}), 404
+    except Exception as e:
+        return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
 # 上架商品
 @app.route("/add_product", methods=["POST"])

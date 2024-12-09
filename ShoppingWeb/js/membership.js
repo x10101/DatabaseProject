@@ -1,3 +1,38 @@
+// 發送請求取得使用者資訊
+async function fetchUserInfo() {
+  try {
+      const response = await fetch('/user_info', { method: 'GET' });
+
+      if (response.ok) {
+          const user = await response.json();
+          /*
+          // 顯示使用者資訊
+          document.getElementById('user-info').innerHTML = `
+              <p>使用者名稱: ${user.username}</p>
+              <p>電子郵件: ${user.email}</p>
+          `;
+          */
+      } else if (response.status === 401) {
+          // 未登入，跳轉至登入頁面
+          const data = await response.json();
+          window.location.href = data.redirect;
+      } else {
+          // 處理其他錯誤
+          document.getElementById('status').textContent = "無法載入使用者資訊";
+      }
+  } catch (error) {
+      document.getElementById('status').textContent = "伺服器錯誤，請稍後再試";
+  }
+}
+
+// 網頁加載後執行
+window.onload = fetchUserInfo;
+
+
+
+
+
+
 window.onload = function () {
   // 預設顯示 "All" 訂單內容，並為 All 按鈕加上 active 類別
   showOrders("all");
