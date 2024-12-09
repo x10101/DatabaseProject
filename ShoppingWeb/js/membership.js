@@ -26,7 +26,7 @@ async function fetchUserInfo() {
 }
 
 // 網頁加載後執行
-window.onload = fetchUserInfo;
+window.onload = fetchUserInfo();
 
 
 
