@@ -45,6 +45,13 @@
           <li><a href="membership.html" onclick="fetchUserInfo(); return false;">Membership</a></li>
           <li><a href="#">Home</a></li>
           <li><a href="#" id="cart-btn">Cart</a></li>
+          <script>
+            // 設定購物車按鈕的事件監聽器
+            document.getElementById('cart-btn').addEventListener('click', () => {
+                // 呼叫購物車載入函式
+                loadCart();
+            });
+          </script>
           <li><a href="my_shop.html">my Shop</a></li>
         </ul>
       </nav>
@@ -135,7 +142,6 @@
 
     <div id="shopping-cart" class="cart-hidden">
       <div id="cart-content">
-        <p id="empty-cart-message" style="display: block;">購物車目前沒有商品。</p>
         <!--
         <ul class="cart-items">
           商品項目會通過 JavaScript 動態插入

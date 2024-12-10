@@ -384,3 +384,5 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("cartItems", JSON.stringify(cartItems)); // 將購物車內容儲存到 localStorage
     });
 });
+
+

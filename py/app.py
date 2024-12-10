@@ -194,28 +194,41 @@ def get_products():
 # 加入購物車 API
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    # 檢查是否登入
     if 'user_id' not in session:
         return jsonify({"error": "未登入"}), 401
 
     user_id = session['user_id']
     data = request.json
     product_id = data.get('product_id')
-    quantity = data.get('quantity', 1)
+    quantity = data.get('quantity')
 
     try:
         db_conn = conn()
         cursor = db_conn.cursor()
+
         # 檢查商品是否存在
         cursor.execute("SELECT COUNT(*) FROM product WHERE product_ID = ? AND released = 1", (product_id,))
         if cursor.fetchone()[0] == 0:
             return jsonify({"error": "商品不存在或未上架"}), 404
 
-        # 將商品加入購物車
-        cursor.execute(
-            "INSERT INTO cart (customer_ID, product_ID, amount) VALUES (?, ?, ?)",
-            (user_id, product_id, quantity)
-        )
+        # 檢查購物車是否已有該商品
+        cursor.execute("SELECT amount FROM cart WHERE customer_ID = ? AND product_ID = ?", (user_id, product_id))
+        result = cursor.fetchone()
+
+        if result:
+            # 若商品已存在於購物車，更新數量
+            cursor.execute("""
+                UPDATE cart
+                SET amount = amount + ?
+                WHERE customer_ID = ? AND product_ID = ?
+            """, (quantity, user_id, product_id))
+        else:
+            # 否則新增一筆商品至購物車
+            cursor.execute("""
+                INSERT INTO cart (customer_ID, product_ID, amount)
+                VALUES (?, ?, ?)
+            """, (user_id, product_id, quantity))
+
         db_conn.commit()
         cursor.close()
         db_conn.close()
@@ -223,6 +236,7 @@ def add_to_cart():
         return jsonify({"message": "成功加入購物車"})
     except Exception as e:
         return jsonify({"error": "內部伺服器錯誤", "message": str(e)}), 500
+
 
 # 列印購物車
 @app.route('/show_cart', methods=['GET'])
@@ -256,6 +270,92 @@ def get_cart():
         } for item in cart_items])
     except Exception as e:
         return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
+@app.route('/update_cart', methods=['POST'])
+def update_cart():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    data = request.json
+    product_id = data.get('product_id')
+    delta = data.get('delta', 0)
+
+    if not product_id or delta == 0:
+        return jsonify({"error": "參數錯誤"}), 400
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 檢查當前商品數量
+        cursor.execute("""
+            SELECT amount FROM cart
+            WHERE customer_ID = ? AND product_ID = ?
+        """, (user_id, product_id))
+        current_quantity = cursor.fetchone()
+
+        if not current_quantity:
+            return jsonify({"error": "商品不存在於購物車"}), 404
+
+        new_quantity = current_quantity[0] + delta
+
+        if new_quantity > 0:
+            # 更新數量
+            cursor.execute("""
+                UPDATE cart
+                SET amount = ?
+                WHERE customer_ID = ? AND product_ID = ?
+            """, (new_quantity, user_id, product_id))
+        else:
+            # 如果數量減到 0，刪除商品
+            cursor.execute("""
+                DELETE FROM cart
+                WHERE customer_ID = ? AND product_ID = ?
+            """, (user_id, product_id))
+
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "成功更新購物車"})
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
+@app.route('/remove_from_cart', methods=['POST'])
+def remove_from_cart():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    data = request.json
+    product_id = data.get('product_id')
+
+    if not product_id:
+        return jsonify({"error": "參數錯誤"}), 400
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 刪除該商品
+        cursor.execute("""
+            DELETE FROM cart
+            WHERE customer_ID = ? AND product_ID = ?
+        """, (user_id, product_id))
+
+        if cursor.rowcount == 0:
+            return jsonify({"error": "商品不存在於購物車"}), 404
+
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "商品已從購物車移除"})
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
+
 
 
 

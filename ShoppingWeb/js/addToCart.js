@@ -1,12 +1,12 @@
 // 加入購物車功能
-async function addToCart(productId) {
+async function addToCart(productId, quantity) {
     try {
         const response = await fetch('/add_to_cart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ product_id: productId, quantity: 1 }),
+            body: JSON.stringify({ product_id: productId, quantity: quantity }),
         });
 
         if (response.status === 401) {
@@ -20,8 +20,8 @@ async function addToCart(productId) {
         } else {
             // 成功加入購物車
             const result = await response.json();
-            window.location.reload();
             alert(result.message);
+            loadCart(); // 重新載入購物車內容
         }
     } catch (error) {
         console.error("加入購物車失敗", error);
