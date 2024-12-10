@@ -63,3 +63,4 @@ function addToCartWithQuantity(productId) {
 
 // 頁面載入時執行
 window.onload = loadProducts;
+
