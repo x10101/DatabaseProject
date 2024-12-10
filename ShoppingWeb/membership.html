@@ -77,8 +77,10 @@
 
       <!-- <button class="logout-btn">登出</button> -->
 
+      
       <!-- 右側訂單記錄 -->
-      <section class="order-record">
+      <section class="order-record" style="max-height: 400px;  /* 設定最大高度，可以根據需要調整 */">
+        <!--
         <h2 class="order-title">訂單紀錄</h2>
         <div class="order-tabs">
           <table>
@@ -90,7 +92,7 @@
           </table>
         </div>
 
-        <!-- 訂單內容區 -->
+        <!-- 訂單內容區 --
         <div class="order-content">
             <div class="order-group" id="all-orders">
             <p>訂單 1: All - 商品 A</p>
@@ -106,6 +108,13 @@
             <p>訂單 7: Sell - 商品 G</p>
             </div>
         </div>
+        -->
+        <div class="order-content" style="overflow: auto;">
+          <!--使用者訂單資訊-->
+          <div class="order-group" id="all-orders" style="overflow: auto;"></div>
+          <script src="js/getOrders.js"></script>
+        </div>
+      </section>
 
     </main>
 

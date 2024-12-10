@@ -390,6 +390,62 @@ def create_order():
         return jsonify({"message": "訂單已成功送出", "order_id": order_id})
     except Exception as e:
         return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+    
+@app.route('/get_orders', methods=['GET'])
+def get_orders():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 查詢該用戶的所有訂單
+        cursor.execute("""
+            SELECT order_ID, order_date FROM orderlist
+            WHERE customer_ID = ?
+            ORDER BY order_date DESC
+        """, (user_id,))
+        orders = cursor.fetchall()
+
+        # 查詢每個訂單的詳細內容
+        order_details = []
+        for order in orders:
+            order_id = order[0]
+            cursor.execute("""
+                SELECT product_ID, quantity FROM order_details
+                WHERE order_ID = ?
+            """, (order_id,))
+            items = cursor.fetchall()
+
+            order_items = []
+            for item in items:
+                cursor.execute("""
+                    SELECT name, price FROM product
+                    WHERE product_ID = ?
+                """, (item[0],))
+                product = cursor.fetchone()
+                order_items.append({
+                    'product_name': product[0],
+                    'quantity': item[1],
+                    'price': product[1]
+                })
+
+            order_details.append({
+                'order_ID': order[0],
+                'order_date': order[1],
+                'items': order_items
+            })
+
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"orders": order_details})
+
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
 
 
 
