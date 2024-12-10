@@ -1,3 +1,8 @@
+// 格式化價錢為 $10,000 形式
+function formatPrice(price) {
+    return parseInt(price).toLocaleString('en-US');
+}
+
 async function loadCart() {
     try {
         const response = await fetch('/show_cart', { method: 'GET' });
@@ -26,16 +31,16 @@ async function loadCart() {
             totalPriceElement.textContent = '$ 0';
             return;
         }
-
         emptyCartMessage.style.display = 'none'; // 隱藏空購物車訊息
 
         // 插入每個商品到購物車中
         cartItems.forEach(item => {
             const listItem = `
                 <li class="cart-item">
+                    <img src="images/${item.product_id}.png"/>
                     <span class="item-name">${item.product_name}</span>
                     <span class="item-quantity">數量: ${item.quantity}</span>
-                    <span class="item-price">$${(item.price * item.quantity).toFixed(2)}</span>
+                    <span class="item-price">$${formatPrice(item.price * item.quantity)}</span>
                 </li>
             `;
             cartItemsContainer.innerHTML += listItem;
@@ -45,7 +50,7 @@ async function loadCart() {
         });
 
         // 更新總價格
-        totalPriceElement.textContent = `$ ${totalPrice.toFixed(2)}`;
+        totalPriceElement.textContent = `$ ${formatPrice(totalPrice)}`;
     } catch (error) {
         console.error("載入購物車失敗", error);
         alert("無法載入購物車，請稍後再試");

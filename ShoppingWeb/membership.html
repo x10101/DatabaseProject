@@ -45,7 +45,32 @@
           </div>
           <h2 class="user-id" id="membership_user_id"></h2>
           <h3 class="user-name" id="membership_user_name"></h3>
-          <a href="loginfirst.html" class="logout-btn">登出</a>
+          <a href="loginfirst.html" class="logout-btn" id="logout-button">登出</a>
+          <script>
+            document.getElementById('logout-button').addEventListener('click', async () => {
+              try {
+                  const response = await fetch('/logoutWeb', {
+                      method: 'POST',
+                      credentials: 'include', // 確保攜帶 cookie
+                      headers: {
+                          'Content-Type': 'application/json',
+                      },
+                  });
+
+                  if (response.ok) {
+                      const result = await response.json();
+                      alert(result.message); // 顯示登出成功訊息
+                      window.location.href = '/login.html'; // 跳轉至登入頁面
+                  } else {
+                      const error = await response.json();
+                      alert(`登出失敗: ${error.message}`);
+                  }
+              } catch (error) {
+                  console.error('登出請求出錯:', error);
+                  alert('伺服器錯誤，請稍後再試');
+              }
+            });
+          </script>
         </div>
       </section>
 

@@ -112,12 +112,16 @@ def login():
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
 # 使用者登出
-@app.route('/logoutWeb')
+@app.route('/logoutWeb', methods=['POST'])
 def logout():
-    session.clear()  # 清除伺服器端的 session 資料
-    response = redirect(url_for('login_page'))  # 跳轉到登入頁面
-    response.set_cookie('session', '', expires=0)  # 清除瀏覽器的 session cookie
-    return response
+    """使用者登出功能"""
+    try:
+        session.clear()  # 清除伺服器端的 session 資料
+        response = jsonify({"message": "登出成功"})  # 返回 JSON 格式的成功訊息
+        response.set_cookie('session', '', expires=0)  # 清除瀏覽器的 session cookie
+        return response
+    except Exception as e:
+        return jsonify({"error": "登出失敗", "message": str(e)}), 500
 
 # 查詢使用者資訊
 @app.route('/user_info', methods=['GET'])
@@ -239,6 +243,7 @@ def get_cart():
             WHERE c.customer_ID = ?
         """, (user_id,))
         cart_items = cursor.fetchall()
+        print(cart_items)
         cursor.close()
         db_conn.close()
 
@@ -246,7 +251,7 @@ def get_cart():
         return jsonify([{
             "product_id": item[0],
             "product_name": item[1],
-            "price": float(item[2]),
+            "price": int(item[2]),
             "quantity": item[3]
         } for item in cart_items])
     except Exception as e:
