@@ -169,7 +169,7 @@
   text-decoration: none;
 }
 
-.product_name .name a {
+.product_name .name {   /* 原本是 .name a */
   text-align: left; /* 名稱靠左對齊 */
   flex: 5; /* 名稱佔據剩餘空間 */
   color: black; /* 文字顏色 */

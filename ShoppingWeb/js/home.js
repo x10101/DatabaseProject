@@ -219,8 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
       resultsSection.style.display = "none"; // 隱藏搜尋結果
     });
 
-    // 搜尋邏輯函數
     /*
+    // 搜尋邏輯函數
     function performSearch() {
       const keyword = searchInput.value.trim().toLowerCase();
 
