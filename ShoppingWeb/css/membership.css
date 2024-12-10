@@ -81,6 +81,7 @@ main.container {
 /* 右邊訂單記錄區域 */
 .order-record {
   font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  height: 500px; /* 固定高度 */
   flex: 2; /* 右側區域佔據兩份空間，顯得更寬 */
   background-color: #fff;
   border: 1px solid #ddd;
