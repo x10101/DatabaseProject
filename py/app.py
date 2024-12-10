@@ -154,42 +154,44 @@ def user_info():
 # 取得所有商品
 @app.route('/products', methods=['GET'])
 def get_products():
-    """取得所有上架商品"""
     try:
-        # 接收關鍵字
-        keyword = request.args.get('keyword', '').strip()
+        # 獲取查詢參數
+        search_query = request.args.get('search', '').strip()
 
         db_conn = conn()
         cursor = db_conn.cursor()
-        # 如果有關鍵字，進行搜尋
-        if keyword:
+
+        if search_query:
+            print("test: y")
+            # 如果有查詢參數，執行模糊搜尋
             cursor.execute("""
-                SELECT product_ID, name, price, amount, information 
+                SELECT product_ID, name, price 
                 FROM product 
-                WHERE released = 1 
-                AND (name LIKE ? OR information LIKE ?)
-            """, (f"%{keyword}%", f"%{keyword}%"))
-        else:  # 否則返回所有商品
+                WHERE released = 1 AND name LIKE ?
+            """, (f'%{search_query}%',))
+        else:
+            print("test: n")
+            # 沒有參數，返回所有商品
             cursor.execute("""
-                SELECT product_ID, name, price, amount, information 
+                SELECT product_ID, name, price 
                 FROM product 
                 WHERE released = 1
             """)
+
         products = cursor.fetchall()
-        #print(products)
         cursor.close()
         db_conn.close()
-        
-        # 回傳 JSON 格式資料
-        return jsonify([{
-            "product_id": row[0],
-            "product_name": row[1],
-            "price": float(row[2]),
-            "stock": row[3],
-            "description": row[4]
-        } for row in products])
+
+        # 格式化結果
+        product_list = [
+            {"product_id": row[0], "product_name": row[1], "price": row[2]}
+            for row in products
+        ]
+
+        return jsonify(product_list)
     except Exception as e:
-        return jsonify({"error": "Internal Server Error", "message": str(e)}), 500
+        return jsonify({"error": "無法獲取商品", "message": str(e)}), 500
+
     
 # 加入購物車 API
 @app.route('/add_to_cart', methods=['POST'])

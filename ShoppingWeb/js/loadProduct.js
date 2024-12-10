@@ -3,27 +3,36 @@ function formatPrice(price) {
     return parseInt(price).toLocaleString('en-US');
 }
 
-async function loadProducts() {
+// 載入商品列表（可傳入查詢參數）
+async function loadProducts(query = '') {
     try {
-        const response = await fetch('/products', { method: 'GET' });
+        // 建立查詢參數的 URL
+        const url = query ? `/products?search=${encodeURIComponent(query)}` : '/products';
+        const response = await fetch(url, { method: 'GET' });
+
         if (!response.ok) throw new Error('Failed to fetch products');
-        
+
         const products = await response.json();
         const productList = document.getElementById('product-list');
         productList.innerHTML = ''; // 清空列表
-        
+
+        if (products.length === 0) {
+            productList.innerHTML = '<p>查無商品結果</p>';
+            return;
+        }
+
         // 渲染每個商品
         products.forEach(product => {
             const item = `
                 <div class="product-item">
-                    <img src="images/${product.product_id}.png" alt="EOS R10" />
+                    <img src="images/${product.product_id}.png" alt="${product.product_name}" />
 
                     <p class="product_name">
-                        <span class="name"><a href="#">${product.product_name}</a></span>
+                        <span class="name">${product.product_name}</span>
                         <span class="price">$${formatPrice(product.price)}</span>
                     </p>
 
-                    <!-- 加入購物車區域 -->
+                    <!-- 數量控制與加入購物車 -->
                     <div class="action-area">
                         <div class="quantity-control">
                             <button class="btn-decrease" onclick="changeQuantity(${product.product_id}, -1)">-</button>
@@ -60,7 +69,27 @@ function addToCartWithQuantity(productId) {
     addToCart(productId, quantity);
 }
 
+// 搜尋商品
+function searchProducts() {
+    const searchInput = document.getElementById('searchInput').value.trim();
+    loadProducts(searchInput); // 傳入搜尋參數，重新載入商品
+}
 
 // 頁面載入時執行
-window.onload = loadProducts;
+window.onload = () => {
+    loadProducts();
 
+    // 綁定搜尋按鈕事件
+    document.getElementById('search-button').addEventListener('click', searchProducts);
+
+    // 綁定輸入框的 Enter 鍵事件
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') searchProducts();
+    });
+
+    // 綁定清除搜尋按鈕事件
+    document.getElementById('clear-search').addEventListener('click', () => {
+        document.getElementById('searchInput').value = '';
+        loadProducts(); // 清除搜尋後重新載入所有商品
+    });
+};
