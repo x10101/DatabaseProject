@@ -1,33 +1,15 @@
 <!DOCTYPE html>
-<!-- !加上tab會有基本框架 -->
 <html lang="zh_TW">
-  <!--網頁使用的語言-->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>結帳</title>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/checkout.css" />
-    <!-- 思源宋體Semibold -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap"
-      rel="stylesheet"
-    />
-    <!-- 思源宋體Bold -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="js/home.js"></script>
+    <script src="js/checkout.js"></script>
   </head>
 
   <body>
-    <!-- HTML5
-    header:網站logo.頁首等相關資訊
-    nav:網站導覽列、主選單
-    main:網頁主要的內容
-    section:main裡面想分成多個區塊
-    footer:頁尾，通常用來標註版權聲明資訊 -->
     <header>
       <h1>ShutterWave</h1>
       <nav>
@@ -39,41 +21,15 @@
         </ul>
       </nav>
     </header>
+    
+    <main style="padding: 100px 20px;">
+      <h2>結帳頁面</h2>
+      <div id="cart-container"></div>
+      <div class="total" id="cart-total"></div>
 
-    <h2>結帳頁面</h2>
-    <div id="cart-container"></div>
-    <div class="total" id="cart-total"></div>
-
-    <script>
-      // 從 localStorage 中讀取購物車內容
-      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-      // 找到顯示購物車的容器
-      const cartContainer = document.getElementById("cart-container");
-      const cartTotal = document.getElementById("cart-total");
-
-      // 總計金額
-      let total = 0;
-
-      // 渲染每個商品
-      cartItems.forEach((item) => {
-        const itemDiv = document.createElement("div");
-        itemDiv.className = "cart-item";
-        itemDiv.innerHTML = `
-        <span>${item.name}</span>
-        <span>單價：$${item.price}</span>
-        <span>數量：${item.quantity}</span>
-        <span>小計：$${item.price * item.quantity}</span>
-      `;
-        cartContainer.appendChild(itemDiv);
-
-        // 計算總金額
-        total += item.price * item.quantity;
-      });
-
-      // 顯示總金額
-      cartTotal.textContent = `總計金額：$${total}`;
-    </script>
+      <!-- 購買按鈕 -->
+      <button id="checkout-button">購買</button>
+    </main>
 
     <footer>
       <p>Copyright © 2024 伶羽游詠 All Rights Reserved.</p>
