@@ -42,15 +42,21 @@
       <h1>ShutterWave</h1>
       <nav>
         <ul>
-          <li><a href="membership.html" onclick="fetchUserInfo(); return false;">Membership</a></li>
+          <li>
+            <a href="membership.html" onclick="fetchUserInfo(); return false;"
+              >Membership</a
+            >
+          </li>
           <li><a href="#">Home</a></li>
           <li><a href="#" id="cart-btn">Cart</a></li>
           <script>
             // 設定購物車按鈕的事件監聽器
-            document.getElementById('cart-btn').addEventListener('click', () => {
+            document
+              .getElementById("cart-btn")
+              .addEventListener("click", () => {
                 // 呼叫購物車載入函式
                 loadCart();
-            });
+              });
           </script>
           <li><a href="my_shop.html">my Shop</a></li>
         </ul>
@@ -104,18 +110,6 @@
           class="ad-image"
           onclick="showFullscreen(this)"
         />
-        <img
-          src="images/ad2.png"
-          alt="Advertisement 2"
-          class="ad-image"
-          onclick="showFullscreen(this)"
-        />
-        <img
-          src="images/ad3.png"
-          alt="Advertisement 3"
-          class="ad-image"
-          onclick="showFullscreen(this)"
-        />
       </div>
 
       <!-- 全屏顯示區域 -->
@@ -124,9 +118,7 @@
       </div>
 
       <!-- 產品 -->
-      <section class="product" id="product-list">
-        
-      </section>
+      <section class="product" id="product-list"></section>
 
       <br />
       <br />
