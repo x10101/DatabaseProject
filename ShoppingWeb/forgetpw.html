@@ -47,6 +47,7 @@
         <div class="form-group">
           <input
             class="input"
+            id="username"
             type="text"
             placeholder="請輸入使用者名稱"
             required
@@ -55,7 +56,8 @@
         <div class="form-group">
           <input
             class="input"
-            type="text"
+            id="new-password"
+            type="password"
             placeholder="請輸入新密碼"
             required
           />
@@ -63,7 +65,8 @@
         <div class="form-group">
           <input
             class="input"
-            type="text"
+            id="confirm-password"
+            type="password"
             placeholder="請再次輸入新密碼"
             required
           />
@@ -71,7 +74,8 @@
         <div class="form-group">
           <div class="resetpw_bt">
             <!--送出按鈕-->
-            <button>送出</button>
+            <button type="button" id="submit-reset-password">送出</button>
+            <script src="js/forgetpw.js"></script>
           </div>
         </div>
       </form>

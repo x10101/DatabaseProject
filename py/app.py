@@ -445,6 +445,38 @@ def get_orders():
 
     except Exception as e:
         return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+    
+@app.route('/reset_password', methods=['POST'])
+def reset_password():
+    data = request.json
+    username = data.get('username')
+    new_password = data.get('newPassword')
+    hashed_password = generate_password_hash(new_password)
+
+    if not username or not new_password:
+        return jsonify({"error": "缺少必要參數"}), 400
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 檢查使用者是否存在
+        cursor.execute("SELECT * FROM member WHERE memberName = ?", (username,))
+        user = cursor.fetchone()
+        if not user:
+            return jsonify({"error": "使用者不存在"}), 404
+
+        # 更新密碼
+        cursor.execute("UPDATE member SET password = ? WHERE memberName = ?", (hashed_password, username))
+        db_conn.commit()
+
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "密碼已成功重置"}), 200
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "details": str(e)}), 500
+
 
 
 
