@@ -24,10 +24,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
-    <script src="js/loadProduct.js"></script>
     <script src="js/home.js"></script>
     <script src="js/ad.js"></script>
     <script src="js/addToCart.js"></script>
+    <script src="js/loadCart.js"></script>
+    <script src="js/loadProduct.js"></script>
   </head>
 
   <body>
@@ -41,9 +42,22 @@
       <h1>ShutterWave</h1>
       <nav>
         <ul>
-          <li><a href="membership.html" onclick="fetchUserInfo(); return false;">Membership</a></li>
+          <li>
+            <a href="membership.html" onclick="fetchUserInfo(); return false;"
+              >Membership</a
+            >
+          </li>
           <li><a href="#">Home</a></li>
           <li><a href="#" id="cart-btn">Cart</a></li>
+          <script>
+            // 設定購物車按鈕的事件監聽器
+            document
+              .getElementById("cart-btn")
+              .addEventListener("click", () => {
+                // 呼叫購物車載入函式
+                loadCart();
+              });
+          </script>
           <li><a href="my_shop.html">my Shop</a></li>
         </ul>
       </nav>
@@ -60,12 +74,12 @@
       <!-- 搜尋 -->
       <section>
         <div class="search-container">
-          <input type="text" placeholder="輸入商品名稱查詢" />
+          <input type="text" id="searchInput" placeholder="輸入商品名稱查詢" />
           <button type="button" id="clear-search" style="display: none">
             &times;
           </button>
           <!-- 叉叉按鈕 -->
-          <button><i class="fas fa-search"></i></button>
+          <button id="search-button"><i class="fas fa-search"></i></button>
         </div>
       </section>
 
@@ -96,18 +110,6 @@
           class="ad-image"
           onclick="showFullscreen(this)"
         />
-        <img
-          src="images/ad2.png"
-          alt="Advertisement 2"
-          class="ad-image"
-          onclick="showFullscreen(this)"
-        />
-        <img
-          src="images/ad3.png"
-          alt="Advertisement 3"
-          class="ad-image"
-          onclick="showFullscreen(this)"
-        />
       </div>
 
       <!-- 全屏顯示區域 -->
@@ -116,16 +118,7 @@
       </div>
 
       <!-- 產品 -->
-      <div class="brand">Canon</div>
-      <section class="product" id="product-list">
-        
-      </section>
-
-      <br />
-      <div class="brand">SONY</div>
-      <section class="product">
-        
-      </section>
+      <section class="product" id="product-list"></section>
 
       <br />
       <br />
@@ -133,17 +126,19 @@
     </main>
 
     <div id="shopping-cart" class="cart-hidden">
-      <div class="cart-content">
-        <p id="empty-cart-message">購物車目前沒有商品。</p>
+      <div id="cart-content">
+        <!--
         <ul class="cart-items">
-          <!-- 商品項目會通過 JavaScript 動態插入 -->
+          商品項目會通過 JavaScript 動態插入
         </ul>
+        -->
       </div>
       <div class="cart-total">
         <span>總金額：</span><span id="total-price">$ 0</span>
       </div>
       <!--<button class="checkout-btn">結帳</button>-->
-      <a href="checkout.html" class="checkout-btn">結帳</a>
+      <button id="checkout-button" class="checkout-btn">送出訂單</button>
+      <script src="js/checkout.js"></script>
     </div>
 
     <footer>

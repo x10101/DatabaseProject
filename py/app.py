@@ -87,7 +87,6 @@ def login():
         # 資料庫操作
         db_conn = conn()                # 建立資料庫連接
         cursor = db_conn.cursor()       # 建立游標
-        print(cursor)
         cursor.execute(                 # 查詢用戶資料
             "SELECT member_ID, password FROM member WHERE email = ?",
             (email,)
@@ -106,31 +105,32 @@ def login():
             session['user_id'] = member_ID  # 設置 session，表示用戶已登入
             return jsonify({"message": "登入成功"}), 200
         else:
-            print("test user_info2")
             return jsonify({"error": "用戶名或密碼錯誤"}), 401
     except Exception as e:
         return jsonify({"error": f"伺服器錯誤: {e}"}), 500
 
 # 使用者登出
-@app.route('/logoutWeb')
+@app.route('/logoutWeb', methods=['POST'])
 def logout():
-    session.clear()  # 清除伺服器端的 session 資料
-    response = redirect(url_for('login_page'))  # 跳轉到登入頁面
-    response.set_cookie('session', '', expires=0)  # 清除瀏覽器的 session cookie
-    return response
+    """使用者登出功能"""
+    try:
+        session.clear()  # 清除伺服器端的 session 資料
+        response = jsonify({"message": "登出成功"})  # 返回 JSON 格式的成功訊息
+        response.set_cookie('session', '', expires=0)  # 清除瀏覽器的 session cookie
+        return response
+    except Exception as e:
+        return jsonify({"error": "登出失敗", "message": str(e)}), 500
 
 # 查詢使用者資訊
 @app.route('/user_info', methods=['GET'])
 def user_info():
     if 'user_id' not in session:  # 未登入，跳轉到登入頁面
-        return jsonify({"redirect": "/login.html"}), 401
+        return jsonify({"redirect": "/loginfirst.html"}), 401
     
     try:
         # 查詢使用者資訊
         db_conn = conn()
         cursor = db_conn.cursor()
-        print("test")
-        print(session['user_id'])
         cursor.execute("SELECT member_ID, memberName, email FROM member WHERE member_ID = ?", (session['user_id'],))
         user = cursor.fetchone()
         cursor.close()
@@ -150,53 +150,81 @@ def user_info():
 # 取得所有商品
 @app.route('/products', methods=['GET'])
 def get_products():
-    """取得所有上架商品"""
     try:
+        # 獲取查詢參數
+        search_query = request.args.get('search', '').strip()
+
         db_conn = conn()
         cursor = db_conn.cursor()
-        # 查詢 released = 1 的商品
-        cursor.execute("SELECT product_ID, name, price, amount, information FROM product WHERE released = 1")
+
+        if search_query:
+            # 如果有查詢參數，執行模糊搜尋
+            cursor.execute("""
+                SELECT product_ID, name, price 
+                FROM product 
+                WHERE released = 1 AND name LIKE ?
+            """, (f'%{search_query}%',))
+        else:
+            # 沒有參數，返回所有商品
+            cursor.execute("""
+                SELECT product_ID, name, price 
+                FROM product 
+                WHERE released = 1
+            """)
+
         products = cursor.fetchall()
-        print(products)
         cursor.close()
         db_conn.close()
-        
-        # 回傳 JSON 格式資料
-        return jsonify([{
-            "product_id": row[0],
-            "product_name": row[1],
-            "price": float(row[2]),
-            "stock": row[3],
-            "description": row[4]
-        } for row in products])
+
+        # 格式化結果
+        product_list = [
+            {"product_id": row[0], "product_name": row[1], "price": row[2]}
+            for row in products
+        ]
+
+        return jsonify(product_list)
     except Exception as e:
-        return jsonify({"error": "Internal Server Error", "message": str(e)}), 500
+        return jsonify({"error": "無法獲取商品", "message": str(e)}), 500
+
     
 # 加入購物車 API
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    # 檢查是否登入
     if 'user_id' not in session:
         return jsonify({"error": "未登入"}), 401
 
     user_id = session['user_id']
     data = request.json
     product_id = data.get('product_id')
-    quantity = data.get('quantity', 1)
+    quantity = data.get('quantity')
 
     try:
         db_conn = conn()
         cursor = db_conn.cursor()
+
         # 檢查商品是否存在
         cursor.execute("SELECT COUNT(*) FROM product WHERE product_ID = ? AND released = 1", (product_id,))
         if cursor.fetchone()[0] == 0:
             return jsonify({"error": "商品不存在或未上架"}), 404
 
-        # 將商品加入購物車
-        cursor.execute(
-            "INSERT INTO cart (customer_ID, product_ID, amount) VALUES (?, ?, ?)",
-            (user_id, product_id, quantity)
-        )
+        # 檢查購物車是否已有該商品
+        cursor.execute("SELECT amount FROM cart WHERE customer_ID = ? AND product_ID = ?", (user_id, product_id))
+        result = cursor.fetchone()
+
+        if result:
+            # 若商品已存在於購物車，更新數量
+            cursor.execute("""
+                UPDATE cart
+                SET amount = amount + ?
+                WHERE customer_ID = ? AND product_ID = ?
+            """, (quantity, user_id, product_id))
+        else:
+            # 否則新增一筆商品至購物車
+            cursor.execute("""
+                INSERT INTO cart (customer_ID, product_ID, amount)
+                VALUES (?, ?, ?)
+            """, (user_id, product_id, quantity))
+
         db_conn.commit()
         cursor.close()
         db_conn.close()
@@ -204,6 +232,260 @@ def add_to_cart():
         return jsonify({"message": "成功加入購物車"})
     except Exception as e:
         return jsonify({"error": "內部伺服器錯誤", "message": str(e)}), 500
+
+
+# 列印購物車
+@app.route('/show_cart', methods=['GET'])
+def get_cart():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+        # 查詢使用者購物車的商品資訊
+        cursor.execute("""
+            SELECT p.product_ID, p.name, p.price, c.amount
+            FROM cart c
+            JOIN product p ON c.product_ID = p.product_ID
+            WHERE c.customer_ID = ?
+        """, (user_id,))
+        cart_items = cursor.fetchall()
+        cursor.close()
+        db_conn.close()
+
+        # 將結果轉換為 JSON 格式
+        return jsonify([{
+            "product_id": item[0],
+            "product_name": item[1],
+            "price": int(item[2]),
+            "quantity": item[3]
+        } for item in cart_items])
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
+@app.route('/update_cart', methods=['POST'])
+def update_cart():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    data = request.json
+    product_id = data.get('product_id')
+    delta = data.get('delta', 0)
+
+    if not product_id or delta == 0:
+        return jsonify({"error": "參數錯誤"}), 400
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 檢查當前商品數量
+        cursor.execute("""
+            SELECT amount FROM cart
+            WHERE customer_ID = ? AND product_ID = ?
+        """, (user_id, product_id))
+        current_quantity = cursor.fetchone()
+
+        if not current_quantity:
+            return jsonify({"error": "商品不存在於購物車"}), 404
+
+        new_quantity = current_quantity[0] + delta
+
+        if new_quantity > 0:
+            # 更新數量
+            cursor.execute("""
+                UPDATE cart
+                SET amount = ?
+                WHERE customer_ID = ? AND product_ID = ?
+            """, (new_quantity, user_id, product_id))
+        else:
+            # 如果數量減到 0，刪除商品
+            cursor.execute("""
+                DELETE FROM cart
+                WHERE customer_ID = ? AND product_ID = ?
+            """, (user_id, product_id))
+
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "成功更新購物車"})
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
+@app.route('/remove_from_cart', methods=['POST'])
+def remove_from_cart():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    data = request.json
+    product_id = data.get('product_id')
+
+    if not product_id:
+        return jsonify({"error": "參數錯誤"}), 400
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 刪除該商品
+        cursor.execute("""
+            DELETE FROM cart
+            WHERE customer_ID = ? AND product_ID = ?
+        """, (user_id, product_id))
+
+        if cursor.rowcount == 0:
+            return jsonify({"error": "商品不存在於購物車"}), 404
+
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "商品已從購物車移除"})
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+
+
+
+# 送出訂單 API
+@app.route('/create_order', methods=['POST'])
+def create_order():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    data = request.json  # 前端傳遞的購物車內容
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 建立訂單主表記錄
+        cursor.execute("""
+            INSERT INTO orderlist (customer_ID, order_date)
+            OUTPUT INSERTED.order_ID
+            VALUES (?, CAST(GETDATE() AS DATE))
+        """, (user_id,))
+        order_id = cursor.fetchone()[0]  # 獲取 SCOPE_IDENTITY() 的結果
+
+        # 將每個購物車項目插入訂單詳情表
+        for item in data.get('cart_items', []):
+            cursor.execute("""
+                INSERT INTO order_details (order_ID, product_ID, quantity)
+                VALUES (?, ?, ?)
+            """, (order_id, item['product_id'], item['quantity']))
+
+        # 清空購物車
+        cursor.execute("DELETE FROM cart WHERE customer_ID = ?", (user_id,))
+
+        db_conn.commit()
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "訂單已成功送出", "order_id": order_id})
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+    
+@app.route('/get_orders', methods=['GET'])
+def get_orders():
+    if 'user_id' not in session:
+        return jsonify({"error": "未登入"}), 401
+
+    user_id = session['user_id']
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 查詢該用戶的所有訂單
+        cursor.execute("""
+            SELECT order_ID, order_date FROM orderlist
+            WHERE customer_ID = ?
+            ORDER BY order_date DESC
+        """, (user_id,))
+        orders = cursor.fetchall()
+
+        # 查詢每個訂單的詳細內容
+        order_details = []
+        for order in orders:
+            order_id = order[0]
+            cursor.execute("""
+                SELECT product_ID, quantity FROM order_details
+                WHERE order_ID = ?
+            """, (order_id,))
+            items = cursor.fetchall()
+
+            order_items = []
+            for item in items:
+                cursor.execute("""
+                    SELECT name, price FROM product
+                    WHERE product_ID = ?
+                """, (item[0],))
+                product = cursor.fetchone()
+                order_items.append({
+                    'product_name': product[0],
+                    'quantity': item[1],
+                    'price': product[1]
+                })
+
+            order_details.append({
+                'order_ID': order[0],
+                'order_date': order[1],
+                'items': order_items
+            })
+
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"orders": order_details})
+
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "message": str(e)}), 500
+    
+@app.route('/reset_password', methods=['POST'])
+def reset_password():
+    data = request.json
+    username = data.get('username')
+    new_password = data.get('newPassword')
+    hashed_password = generate_password_hash(new_password)
+
+    if not username or not new_password:
+        return jsonify({"error": "缺少必要參數"}), 400
+
+    try:
+        db_conn = conn()
+        cursor = db_conn.cursor()
+
+        # 檢查使用者是否存在
+        cursor.execute("SELECT * FROM member WHERE memberName = ?", (username,))
+        user = cursor.fetchone()
+        if not user:
+            return jsonify({"error": "使用者不存在"}), 404
+
+        # 更新密碼
+        cursor.execute("UPDATE member SET password = ? WHERE memberName = ?", (hashed_password, username))
+        db_conn.commit()
+
+        cursor.close()
+        db_conn.close()
+
+        return jsonify({"message": "密碼已成功重置"}), 200
+    except Exception as e:
+        return jsonify({"error": "伺服器錯誤", "details": str(e)}), 500
+
+
+
+
+
+
+
+
+
+
 
 
 

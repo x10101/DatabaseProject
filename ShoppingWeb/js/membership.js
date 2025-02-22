@@ -33,12 +33,16 @@ window.onload = function () {
   // 預設顯示 "All" 訂單內容，並為 All 按鈕加上 active 類別
   showOrders("all");
 
+  /*
   // 登出按鈕事件監聽
   document.querySelector(".logout-btn").addEventListener("click", function () {
     alert("登出成功！");
     // 可加入跳轉或清除登入狀態的邏輯
+    
   });
+  */
 };
+
 
 function showOrders(type) {
   // 隱藏所有的訂單內容

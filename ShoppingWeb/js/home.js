@@ -219,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resultsSection.style.display = "none"; // 隱藏搜尋結果
     });
 
+    /*
     // 搜尋邏輯函數
     function performSearch() {
       const keyword = searchInput.value.trim().toLowerCase();
@@ -290,6 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
         brand.style.display = isBrandVisible ? "block" : "none";
       });
     }
+      
 
     // 綁定搜尋按鈕點擊事件
     searchButton.addEventListener("click", performSearch);
@@ -298,10 +300,12 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault(); // 阻止默認的表單提交行為（如果在表單內）
-        performSearch();
+        //performSearch();
       }
     });
+    */
   }
+    
 
   // 數量控制功能（已添加的代碼）
   const quantityControls = document.querySelectorAll(".quantity-control");
@@ -384,3 +388,5 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("cartItems", JSON.stringify(cartItems)); // 將購物車內容儲存到 localStorage
     });
 });
+
+

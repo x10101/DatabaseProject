@@ -17,7 +17,7 @@ main.container {
 
 /* 左邊用戶資料區域 */
 .user-section {
-  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  /*font-family: "Noto Serif TC", serif; 使用思源宋體繁體版*/
   flex: 1; /* 左側區域佔據一份空間 */
   max-width: 300px; /* 限制最大寬度 */
   height: 330px; /* 固定高度 */
@@ -80,7 +80,8 @@ main.container {
 }
 /* 右邊訂單記錄區域 */
 .order-record {
-  font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  /*font-family: "Noto Serif TC", serif; /* 使用思源宋體繁體版 */
+  height: 500px; /* 固定高度 */
   flex: 2; /* 右側區域佔據兩份空間，顯得更寬 */
   background-color: #fff;
   border: 1px solid #ddd;
